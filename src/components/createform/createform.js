@@ -38,10 +38,11 @@ class CreateFormDialog extends React.Component {
     
     if (name !== "") {
       if (name.length > 2) {
-        Router.push({
-          pathname: '/form/builder',
-          // query: { name: 'Zeit' }
-        })
+        // Router.push({
+        //   pathname: '/form/builder',
+        //   // query: { name: 'Zeit' }
+        // });
+        Router.push("builder");
       } else {
         this.setState({
           nameError: {

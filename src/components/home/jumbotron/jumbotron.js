@@ -10,7 +10,7 @@ import Feedback from "@material-ui/icons/Feedback";
 import Complaint from "@material-ui/icons/People";
 import Request from "@material-ui/icons/Mic";
 import Typography from '@material-ui/core/Typography';
-import CreateFormDialog from '../createform/createform';
+import CreateFormDialog from '../../createform/createform';
 
 const styles = theme => ({
   root: {
@@ -28,9 +28,12 @@ const styles = theme => ({
     margin: 20
   },
   header: {
-    color: "white"
+    color: "white",
+    textTransform: "uppercase"
   }
 });
+
+
 
 class Jumbotron extends Component {
   constructor(props) {

@@ -4,11 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Add from "@material-ui/icons/Add";
-import ContactPhone from "@material-ui/icons/Phone";
-import Payment from "@material-ui/icons/Payment";
-import Feedback from "@material-ui/icons/Feedback";
-import Complaint from "@material-ui/icons/People";
-import Request from "@material-ui/icons/Mic";
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({

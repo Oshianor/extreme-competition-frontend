@@ -4,8 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Header from "../../components/header/header";
-import Jumbotron from "../../components/jumbotron/jumbotron";
-import Homeforms from '../../components/homeforms/homeforms';
+import Jumbotron from "../../components/home/jumbotron/jumbotron";
+import Homeforms from '../../components/home/homeforms/homeforms';
 
 const styles = theme => ({
   root: {

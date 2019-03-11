@@ -2,25 +2,25 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from "@material-ui/core/Typography";
+
 
 const styles = theme => ({
   root: {
-    flex: 1,
-    backgroundColor: "#35696a",
-    height: "100vh",
-  },
-  center: {
-    margin: "auto",
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute"
+    // backgroundColor: "#35696a",
+    backgroundColor: theme.palette.background.main,
+    height: "100vh"
   },
   divCenter: {
-    margin: "0 auto",
-    position: "absolute"
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: "15%"
+  },
+  img: {
+    width: 75
   }
 });
 
@@ -31,8 +31,8 @@ class Launch extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.divCenter}>
-          <h3>FORMBUILDER</h3>
-          <img src="/static/icon/icon.png" alt="my image" />
+          <Typography variant='h6'>FORMBUILDER</Typography>
+          <img src="/static/icon/document.svg" alt="my image" className={classes.img} />
         </div>
       </div>
     );

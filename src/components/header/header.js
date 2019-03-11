@@ -9,14 +9,18 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import { withStyles } from '@material-ui/core/styles';
-// import MenuIcon from '@material-ui/icons/Menu';
+import withStyles from '@material-ui/core/styles/withStyles';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Link from 'next/link'
+import SubHeader from './sub.header';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { setHeaderScrollUp } from '../../actions/default.action';
+
 
 const styles = theme => ({
   root: {
@@ -61,7 +65,8 @@ const styles = theme => ({
     justifyContent: 'center',
   },
   inputRoot: {
-    color: 'inherit',
+    // color: 'inherit',
+    color: theme.palette.secondary.main,
     width: '100%',
   },
   inputInput: {
@@ -91,8 +96,9 @@ const styles = theme => ({
 
 class Header extends React.Component {
   state = {
+    hide: false,
     anchorEl: null,
-    mobileMoreAnchorEl: null,
+    mobileMoreAnchorEl: null
   };
 
   handleProfileMenuOpen = event => {
@@ -104,6 +110,28 @@ class Header extends React.Component {
     this.handleMobileMenuClose();
   };
 
+  componentDidMount() {
+		addEventListener('scroll', this.trackScrolling);
+	}
+
+	componentWillUnmount() {
+		removeEventListener('scroll', this.trackScrolling);
+	}
+
+	trackScrolling = (e) => {
+    const { setHeaderScrollUp, headerScrollUp } = this.props;
+		if(window.scrollY > 40) {
+      if (!headerScrollUp) {
+        setHeaderScrollUp(true);        
+      }
+			return false
+		}
+    if (headerScrollUp) {
+      setHeaderScrollUp(false);
+    }
+		return false;
+	}
+
   handleMobileMenuOpen = event => {
     this.setState({ mobileMoreAnchorEl: event.currentTarget });
   };
@@ -113,7 +141,7 @@ class Header extends React.Component {
   };
 
   render() {
-    const { anchorEl, mobileMoreAnchorEl } = this.state;
+    const { anchorEl, mobileMoreAnchorEl, hide } = this.state;
     const { classes } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -166,13 +194,10 @@ class Header extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" style={{ backgroundColor: "black" }} >
+        <AppBar position='static' className={classes.appBar} style={{ backgroundColor: "black", zIndex: 999999 }} >
           <Toolbar>
-            {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-              <MenuIcon />
-            </IconButton> */}
             <Link prefetch href="/">
-              <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+              <Typography className={classes.title} variant="h6" color="secondary" noWrap>
                 FORM BUILDER
               </Typography>
             </Link>
@@ -190,13 +215,13 @@ class Header extends React.Component {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
-                <Badge className={classes.margin} badgeContent={4} color="secondary">
+              <IconButton color="secondary">
+                <Badge className={classes.margin} badgeContent={4} color="primary">
                   <MailIcon />
                 </Badge>
               </IconButton>
-              <IconButton color="inherit">
-                <Badge className={classes.margin} badgeContent={17} color="secondary">
+              <IconButton color="secondary">
+                <Badge className={classes.margin} badgeContent={17} color="primary">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
@@ -204,7 +229,7 @@ class Header extends React.Component {
                 aria-owns={isMenuOpen ? 'material-appbar' : null}
                 aria-haspopup="true"
                 onClick={this.handleProfileMenuOpen}
-                color="inherit"
+                color="secondary"
               >
                 <AccountCircle />
               </IconButton>
@@ -216,6 +241,7 @@ class Header extends React.Component {
             </div>
           </Toolbar>
         </AppBar>
+        <SubHeader hide={hide} />
         {renderMenu}
         {renderMobileMenu}
       </div>
@@ -223,8 +249,21 @@ class Header extends React.Component {
   }
 }
 
+
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Header);
+function mapStateToProps(state) {
+  return {
+		headerScrollUp: state.default.headerScrollUp,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    setHeaderScrollUp: setHeaderScrollUp
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Header));

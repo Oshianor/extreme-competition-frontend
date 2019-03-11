@@ -28,7 +28,7 @@ const styles = theme => ({
 
 class Index extends React.Component {
   state = {
-    start: true,
+    start: false,
   };
 
   componentDidMount = () => {
