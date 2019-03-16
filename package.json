@@ -24,7 +24,6 @@
     "react-dnd-touch-backend": "^0.6.0",
     "react-dom": "^16.8.2",
     "react-jss": "^8.6.1",
-    "react-pose": "^3.4.0",
     "react-redux": "^5.1.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
