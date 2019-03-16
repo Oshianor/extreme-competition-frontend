@@ -1,5 +1,9 @@
 const initialstate = {
-	headerScrollUp: false
+	headerScrollUp: false,
+	prompt: {
+		reason: "",
+		open: false
+	}
 }
 
 export default (state = initialstate, action) => {

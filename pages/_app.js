@@ -9,8 +9,9 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import appReducer from '../src/reducers/index';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(appReducer, applyMiddleware(thunk));
+const store = createStore(appReducer, composeWithDevTools(applyMiddleware(thunk)));
 class MyApp extends App {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ class MyApp extends App {
       <Container>
         <Head>
           <title>
-            TerasysHub-IO
+            GIS
           </title>
           <meta charSet="UTF-8" />
           <meta name="author" content="Abundance" />

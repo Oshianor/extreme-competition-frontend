@@ -1,66 +1,103 @@
 export const defVal = {
-	// !start----hold on this
 	name: {
 		type: "name",
-		name: "Name",
+		label: "Name",
 		instruction: "",
 		size: "m",
-		nameElement: {
-			first: "First",
-			last: "Last"
+		element: {
+			first: {
+				type: "single_line",
+				label: "First Name",
+				visible: true
+			},
+			last: {
+				type: "single_line",
+				label: "Last Name",
+				visible: true
+			}
 		},
 		required: false,
 		visible: true
 	},
 	address: {
 		type: "address",
-		name: "Address",
+		label: "Address",
 		instruction: "",
-		size: "m",
-		addressElement: {
-			streetAddress: { visible: "yes", label: "Street Address" },
-			addressLine: { visible: "yes", label: "Address Line" },
-			city: { visible: "yes", label: "City" },
-			state: { visible: "yes", label: "State" },
-			zip: { visible: "yes", label: "Zip" },
-			country: { visible: "yes", label: "Country" },
+		// size: "m",
+		element: {
+			streetAddress: { 
+				type: "single_line",
+				label: "Street Address",
+				size: "s",
+				visible: true
+			},
+			addressLine: { 
+				type: "single_line",
+				label: "Address Line",
+				size: "s",
+				visible: true
+			},
+			city: { 
+				type: "single_line",
+				label: "City",
+				size: "s",
+				visible: true
+			},
+			state: { 
+				type: "single_line",
+				label: "State",
+				size: "s",
+				visible: true
+			},
+			zip: { 
+				type: "single_line",
+				label: "Zip",
+				size: "s",
+				visible: true
+			},
+			country: { 
+				type: "dropdown",
+				label: "Country",
+				instruction: "",
+				size: "s",
+				visible: true
+			},
 		},
 		required: false,
 		visible: true
 	},
-	// !end ---hold on this
-
 	single_line: {
 		type: "single_line",
-			name: "Single Line",
-			instruction: "",
-			size: "m",
-			initialValue: "",
-			range: {
-				min: 0,
-				max: 225
-			},
-			required: true,
-			duplicates: true,
-			visible: true
+		label: "Single Line",
+		instruction: "",
+		size: "l",
+		initialValue: "",
+		range: {
+			min: 0,
+			max: 225
+		},
+		required: false,
+		// duplicates: true,
+		visible: true
 	},
 	multi_line: {
 		type: "multi_line",
-		name: "Multi Line",
+		label: "Multi Line",
 		instruction: "",
 		size: "m",
 		initialValue: "",
+		rowsMax: 2,
 		range: {
 			min: 0,
 			max: 6000,
 			format: "characters" // word
 		},
-		required: true,
+		required: false,
 		visible: true
 	},
 	number: {
 		type: "number",
-		name: "Number",
+		label: "Number",
 		instruction: "",
 		size: "m",
 		initialValue: "",
@@ -70,13 +107,13 @@ export const defVal = {
 			format: "digits" // values
 		},
 		required: true,
-		duplicates: false,
+		// duplicates: false,
 		allowNegativeValue: false,
 		visible: true
 	},
 	decimal: {
 		type: "decimal",
-		name: "Decimal",
+		label: "Decimal",
 		instruction: "",
 		size: "m",
 		initialValue: "",
@@ -88,22 +125,22 @@ export const defVal = {
 			format: "digits" // values
 		},
 		required: false,
-		duplicates: false,
+		// duplicates: false,
 		visible: true
 	},
 	time: {
 		type: "time",
-		name: "Time",
+		label: "Time",
 		instruction: "",
 		timeFormat: "12", // 24
 		minuteInterval: "1", // 1,5,10,15,30
 		required: false,
-		duplicates: false,
+		// duplicates: false,
 		visible: true
 	},
 	website: {
 		type: "website",
-		name: "Website",
+		label: "Website",
 		instruction: "",
 		size: "m",
 		initialValue: "",
@@ -112,7 +149,7 @@ export const defVal = {
 	},
 	checkbox: {
 		type: "checkbox",
-		name: "Checkbox",
+		label: "Checkbox",
 		instruction: "",
 		display: "1 column", // 2 column, 3 column, side by side
 		choice: [
@@ -130,7 +167,7 @@ export const defVal = {
 	},
 	decision_box: {
 		type: "decision_box",
-		name: "Decision Box",
+		label: "Decision Box",
 		instruction: "",
 		initialState: false,
 		required: false,
@@ -138,7 +175,7 @@ export const defVal = {
 	},
 	date_time: {
 		type: "date_time",
-		name: "Date Time",
+		label: "Date Time",
 		instruction: "",
 		initialValue: "",
 		range: {
@@ -146,12 +183,12 @@ export const defVal = {
 			to: ""
 		},
 		required: false,
-		duplicates: false,
+		// duplicates: false,
 		visible: true
 	},
 	multi_choice: {
 		type: "multi_choice",
-		name: "Multi Choice",
+		label: "Multi Choice",
 		instruction: "",
 		size: "m",
 		choice: [
@@ -169,29 +206,29 @@ export const defVal = {
 	},
 	phone: {
 		type: "phone",
-		name: "Phone",
+		label: "Phone",
 		instruction: "",
 		size: "m",
 		format: "international", // "###-###-####"
 		initialValue: "",
 		required: false,
-		duplicates: false,
+		// duplicates: false,
 		visible: true
 	},
 	email: {
 		type: "email",
-		name: "Email",
+		label: "Email",
 		instruction: "",
 		size: "m",
 		initialValue: "",
 		allowedDomains: "",
 		required: false,
-		duplicates: false,
+		// duplicates: false,
 		visible: true
 	},
 	radio: {
 		type: "radio",
-		name: "Radio",
+		label: "Radio",
 		instruction: "",
 		display: "1 column", // 2 column, 3 column, side by side
 		choice: ["First choice", "Second Choice", "Third Choice"],
@@ -201,7 +238,7 @@ export const defVal = {
 	},
 	currency: {
 		type: "currency",
-		name: "Currency",
+		label: "Currency",
 		instruction: "",
 		size: "m",
 		currency: "NGN",
@@ -214,12 +251,12 @@ export const defVal = {
 			format: "digits" // value
 		},
 		required: false,
-		duplicates: false,
+		// duplicates: false,
 		visible: true
 	},
 	date: {
 		type: "date",
-		name: "Date",
+		label: "Date",
 		instruction: "",
 		initialValue: "",
 		range: {
@@ -227,22 +264,22 @@ export const defVal = {
 			to: ""
 		},
 		required: false,
-		duplicates: false,
+		// duplicates: false,
 		visible: true
 	},
 	file_upload: {
 		type: "file_upload",
-		name: "File Upload",
+		label: "File Upload",
 		instruction: "",
 		allowedMaxSize: "20mb",
 		allowedFileType: "",
 		required: false,
-		duplicates: false,
+		// duplicates: false,
 		visible: true
 	},
 	dropdown: {
 		type: "dropdown",
-		name: "Dropdown",
+		label: "Dropdown",
 		instruction: "",
 		size: "m",
 		checked: "null",
@@ -254,12 +291,13 @@ export const defVal = {
 	},
 	section: {
 		type: "section",
-		name: "Section",
+		label: "Section",
+		size: 20,
 		instruction: "",
 	},
 	slider: {
 		type: "slider",
-		name: "Slider",
+		label: "Slider",
 		instruction: "",
 		size: "m",
 		range: {
@@ -271,7 +309,7 @@ export const defVal = {
 	},
 	rating: {
 		type: "rating",
-		name: "Rating",
+		label: "Rating",
 		instruction: "",
 		count: 5,
 		required: false,
@@ -279,7 +317,7 @@ export const defVal = {
 	},
 	unique_id: {
 		type: "unique_id",
-		name: "Unique ID",
+		label: "Unique ID",
 		instruction: "(Note: This field will not show up on the form)",
 		startFrom: 1,
 		prefix: "",
@@ -287,7 +325,7 @@ export const defVal = {
 	},
 	terms_and_conditions: {
 		type: "terms_and_conditions",
-		name: "Terms and Conditions",
+		label: "Terms and Conditions",
 		showLabel: true,
 		terms: "",
 		declaration: "",
@@ -296,13 +334,16 @@ export const defVal = {
 	},
 	signature: {
 		type: "signature",
-		name: "Signature",
+		label: "Signature",
 		instruction: "",
 		allowedMaxSize: "20MB",
 		required: false,
 	},
 	gps: {
 		type: "gps",
-		name: "GPS",
+		label: "GPS",
+	},
+	page: {
+		type: 'page'
 	}
 } 

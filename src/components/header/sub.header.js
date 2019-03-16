@@ -68,6 +68,10 @@ function SubHeader(props) {
 				<div className={classes.grow} />
 				<div className={classes.save}>
 					<Button className={classes.action} variant='contained' color='secondary' >
+						Publish
+					</Button>
+					&nbsp;
+					<Button className={classes.action} variant='contained' color='secondary' >
 						Save
 					</Button>
 				</div>

@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux'
 import HeaderProperty from './components/header/header.property';
+import Single_lineProperty from './components/single_line/single_line.property';
 
 
 
@@ -36,6 +37,36 @@ const styles = theme => ({
 	}
 });
 class PropertyBuilder extends Component {
+	displayProperty = () => {
+		const { builder } = this.props;
+		let component = null;
+		builder.page.forEach((page, pageNo) => {
+			console.log('property===>page', page);
+			
+			page.forEach(element => {
+			console.log('property===>page', page);
+
+				if (typeof element.type !== "undefined" && element.type === builder.type && element.uid === builder.uid) {
+					switch (builder.type) {
+						case 'single_line':
+							component = <Single_lineProperty field={element} pageNo={pageNo} />;
+						default:
+							break;
+					}
+				}
+			})
+		});
+		return(
+			<>
+				{
+					builder.type === "header" ?
+						<HeaderProperty />
+					:
+						component
+				}
+			</>
+		)
+	}
 	render() {
 		const { classes, headerScrollUp } = this.props;
 		const marginTop = headerScrollUp ? -120 : 0;
@@ -47,7 +78,7 @@ class PropertyBuilder extends Component {
 						Properties 
 					</Typography>
 					<div>
-						<HeaderProperty />
+						{this.displayProperty()}
 					</div>
 				</Paper>
 			</div>
@@ -61,6 +92,7 @@ PropertyBuilder.propTypes = {
 function mapStateToProps(state) {
 	return {
 		headerScrollUp: state.default.headerScrollUp,
+	  builder: state.builder
 	}
 }
 
