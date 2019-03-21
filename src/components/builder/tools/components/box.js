@@ -9,6 +9,9 @@ import {
 } from '../../../../actions/builder.action';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+
+
 
 const styles = {
 	root: {
@@ -87,6 +90,11 @@ class Box extends React.Component {
     )
   }
 }
+Box.propTypes = {
+	img: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+};
+
 function mapStateToProps(state) {
 	return {
 		headerScrollUp: state.default.headerScrollUp

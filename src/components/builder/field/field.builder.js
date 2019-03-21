@@ -12,7 +12,7 @@ function FieldArea(props) {
       <HeaderField />
       {
         builder.page.map((i, index) => (
-          <PageField key={index} index={index} page={i} />
+          <PageField key={index} pageNo={index} page={i} />
         ))
       }
     </div>

@@ -17,6 +17,7 @@ export const defVal = {
 			}
 		},
 		required: false,
+		disabled: false,
 		visible: true
 	},
 	address: {
@@ -77,7 +78,7 @@ export const defVal = {
 			max: 225
 		},
 		required: false,
-		// duplicates: true,
+		disabled: false,
 		visible: true
 	},
 	multi_line: {
@@ -86,13 +87,13 @@ export const defVal = {
 		instruction: "",
 		size: "m",
 		initialValue: "",
-		rowsMax: 2,
 		range: {
 			min: 0,
 			max: 6000,
 			format: "characters" // word
 		},
 		required: false,
+		disabled: false,
 		visible: true
 	},
 	number: {
@@ -107,8 +108,8 @@ export const defVal = {
 			format: "digits" // values
 		},
 		required: true,
-		// duplicates: false,
 		allowNegativeValue: false,
+		disabled: false,
 		visible: true
 	},
 	decimal: {
@@ -125,7 +126,7 @@ export const defVal = {
 			format: "digits" // values
 		},
 		required: false,
-		// duplicates: false,
+		disabled: false,
 		visible: true
 	},
 	time: {
@@ -135,7 +136,7 @@ export const defVal = {
 		timeFormat: "12", // 24
 		minuteInterval: "1", // 1,5,10,15,30
 		required: false,
-		// duplicates: false,
+		disabled: false,
 		visible: true
 	},
 	website: {
@@ -163,6 +164,7 @@ export const defVal = {
 			max: ""
 		},
 		required: false,
+		disabled: false,
 		visible: true
 	},
 	decision_box: {
@@ -171,6 +173,7 @@ export const defVal = {
 		instruction: "",
 		initialState: false,
 		required: false,
+		disabled: false,
 		visible: true
 	},
 	date_time: {
@@ -183,7 +186,7 @@ export const defVal = {
 			to: ""
 		},
 		required: false,
-		// duplicates: false,
+		disabled: false,
 		visible: true
 	},
 	multi_choice: {
@@ -202,6 +205,7 @@ export const defVal = {
 			max: ""
 		},
 		required: false,
+		disabled: false,
 		visible: true
 	},
 	phone: {
@@ -212,7 +216,7 @@ export const defVal = {
 		format: "international", // "###-###-####"
 		initialValue: "",
 		required: false,
-		// duplicates: false,
+		disabled: false,
 		visible: true
 	},
 	email: {
@@ -223,7 +227,6 @@ export const defVal = {
 		initialValue: "",
 		allowedDomains: "",
 		required: false,
-		// duplicates: false,
 		visible: true
 	},
 	radio: {
@@ -234,6 +237,7 @@ export const defVal = {
 		choice: ["First choice", "Second Choice", "Third Choice"],
 		other: false,
 		required: false,
+		disabled: false,
 		visible: true
 	},
 	currency: {
@@ -251,7 +255,7 @@ export const defVal = {
 			format: "digits" // value
 		},
 		required: false,
-		// duplicates: false,
+		disabled: false,
 		visible: true
 	},
 	date: {
@@ -264,7 +268,7 @@ export const defVal = {
 			to: ""
 		},
 		required: false,
-		// duplicates: false,
+		disabled: false,
 		visible: true
 	},
 	file_upload: {
@@ -274,7 +278,7 @@ export const defVal = {
 		allowedMaxSize: "20mb",
 		allowedFileType: "",
 		required: false,
-		// duplicates: false,
+		disabled: false,
 		visible: true
 	},
 	dropdown: {
@@ -282,11 +286,12 @@ export const defVal = {
 		label: "Dropdown",
 		instruction: "",
 		size: "m",
-		checked: "null",
+		checked: null,
 		choice: [
 			"First choice", "Second Choice", "Third Choice", "Fourth Choice"
 		],
 		required: false,
+		disabled: false,
 		visible: true
 	},
 	section: {
@@ -305,6 +310,7 @@ export const defVal = {
 			max: 100
 		},
 		required: false,
+		disabled: false,
 		visible: true
 	},
 	rating: {
@@ -313,6 +319,21 @@ export const defVal = {
 		instruction: "",
 		count: 5,
 		required: false,
+		disabled: false,
+		visible: true
+	},
+	description: {
+		type: "description",
+		label: "Description",
+		body: ''
+	},
+	image: {
+		type: "image",
+		instruction: "",
+		allowedMaxSize: "20mb",
+		allowedFileType: "",
+		required: false,
+		disabled: false,
 		visible: true
 	},
 	unique_id: {
@@ -331,6 +352,7 @@ export const defVal = {
 		declaration: "",
 		status: "I agree to the terms and condition",
 		required: false,
+		disabled: false,
 	},
 	signature: {
 		type: "signature",
@@ -338,6 +360,7 @@ export const defVal = {
 		instruction: "",
 		allowedMaxSize: "20MB",
 		required: false,
+		disabled: false,
 	},
 	gps: {
 		type: "gps",

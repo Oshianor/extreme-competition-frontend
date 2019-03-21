@@ -5,7 +5,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux'
 import HeaderProperty from './components/header/header.property';
-import Single_lineProperty from './components/single_line/single_line.property';
+import SingleLineProperty from './components/single_line/single_line.property';
+import MultiLineProperty from './components/multi_line/multi_line.property';
 
 
 
@@ -41,16 +42,21 @@ class PropertyBuilder extends Component {
 		const { builder } = this.props;
 		let component = null;
 		builder.page.forEach((page, pageNo) => {
-			console.log('property===>page', page);
+			// console.log('property===>page', page);
 			
 			page.forEach(element => {
-			console.log('property===>page', page);
+			// console.log('property===>page', page);
 
 				if (typeof element.type !== "undefined" && element.type === builder.type && element.uid === builder.uid) {
 					switch (builder.type) {
 						case 'single_line':
-							component = <Single_lineProperty field={element} pageNo={pageNo} />;
+							component = <SingleLineProperty field={element} pageNo={pageNo} />;
+							break;
+						case 'multi_line':
+							component = <MultiLineProperty field={element}  pageNo={pageNo} />;
+							break;
 						default:
+							component = <HeaderProperty />;
 							break;
 					}
 				}

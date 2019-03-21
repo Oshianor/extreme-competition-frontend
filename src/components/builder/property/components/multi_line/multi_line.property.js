@@ -14,10 +14,12 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Switch from '@material-ui/core/Switch';
 import Zoom from '@material-ui/core/Zoom';
-
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 const styles = theme => ({
   container: {
@@ -48,6 +50,12 @@ const styles = theme => ({
   },
   rangeOption: {
     width: 70
+  },
+  rangeHead: {
+    margin: '20px 0px -20px'
+  },
+  formControl: {
+    marginTop: 10
   }
 });
 
@@ -56,6 +64,7 @@ class SingleLineProperty extends React.Component {
     err: '',
     msg: ""
   }
+
   handleChange = name => event => {
     const { builder, pageNo, field, handleFieldEdit } = this.props;
     builder.page[pageNo].forEach((element) => {
@@ -65,21 +74,24 @@ class SingleLineProperty extends React.Component {
         //  and then update the state 
         if(name === "required" || name === 'visible' || name === 'disabled') {
           element[name] = event.target.checked;      
-        } else if (name === "min" || name === 'max') {
+        } else if (name === "min" || name === 'max' || name === 'format') {
+          console.log('event.target.value', event.target.value);
+          
+          element.range[name] = name === 'format' ? event.target.value : isNaN(Math.abs(event.target.value)) ? 0 : Math.abs(event.target.value)
           // we check if the value isn't greater than the max of 225
-          if (event.target.value < 225) {
-            element.range[name] = Math.abs(event.target.value)
-            this.setState({
-              err: "",
-              msg: ''
-            })
-          } else {
-            // set and error state
-            this.setState({
-              err: "range",
-              msg: `${name.toUpperCase()} shouldn't be more than 225`
-            })
-          }
+          // if (event.target.value < 225) {
+          //   element.range[name] = Math.abs(event.target.value)
+          //   this.setState({
+          //     err: "",
+          //     msg: ''
+          //   })
+          // } else {
+          //   // set and error state
+          //   this.setState({
+          //     err: "range",
+          //     msg: `${name.toUpperCase()} shouldn't be more than 225`
+          //   })
+          // }
         } else if (name === "s" || name === 'm' || name === 'l') {
           element.size = name;
         } else{
@@ -192,10 +204,10 @@ class SingleLineProperty extends React.Component {
 
 
           {/* range */}
+          <Typography variant="button" className={classes.rangeHead}>
+            Range: &nbsp;&nbsp;
+          </Typography>
           <div className={classes.sizeRoot}>
-            <Typography variant="button">
-              Range: &nbsp;&nbsp;
-            </Typography>
             <TextField
               id="outlined-multiline-flexible"
               label="Min"
@@ -218,6 +230,30 @@ class SingleLineProperty extends React.Component {
               margin="normal"
               variant="outlined"
             />
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel
+                ref={ref => {
+                  this.InputLabelRef = ref;
+                }}
+                htmlFor="format"
+              >
+                Format
+              </InputLabel>
+              <Select
+                value={field.range.format}
+                onChange={this.handleChange('format')}
+                input={
+                  <OutlinedInput
+                    labelWidth={50}
+                    name="Format"
+                    id="format"
+                  />
+                }
+              >
+                <MenuItem value='words'>Words</MenuItem>
+                <MenuItem value='characters'>Characters</MenuItem>
+              </Select>
+            </FormControl>
           </div>
           {
             err === 'range' &&

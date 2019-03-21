@@ -55,10 +55,14 @@ export const basic = [
 		name: 'Date Time',
 		icon: '/static/icon/list-icon/calendar-with-a-clock-time-tools.svg',
 	},
-]
-
-
-export const advance = [
+	{
+		name: 'Dropdown',
+		icon: '/static/icon/list-icon/drop-down-arrow.svg',
+	},
+	{
+		name: 'Page',
+		icon: '/static/icon/list-icon/page.svg',
+	},
 	{
 		name: 'Multi Choice',
 		icon: '/static/icon/list-icon/tick-box-with-check-mark.svg',
@@ -67,6 +71,18 @@ export const advance = [
 		name: 'Address',
 		icon: '/static/icon/list-icon/direction-signs.svg',
 	},
+	{
+		name: 'Image',
+		icon: '/static/icon/list-icon/picture.svg',
+	},
+	{
+		name: 'Description',
+		icon: '/static/icon/list-icon/description.svg',
+	},
+]
+
+
+export const advance = [
 	{
 		name: 'Slider',
 		icon: '/static/icon/list-icon/slider.svg',
@@ -85,14 +101,6 @@ export const advance = [
 	{
 		name: 'Unique ID',
 		icon: '/static/icon/list-icon/id-file-in-a-circle-outline.svg',
-	},
-	{
-		name: 'Dropdown',
-		icon: '/static/icon/list-icon/drop-down-arrow.svg',
-	},
-	{
-		name: 'Page',
-		icon: '/static/icon/list-icon/page.svg',
 	},
 	{
 		name: 'GPS',

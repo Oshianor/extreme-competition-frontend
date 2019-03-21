@@ -42,7 +42,7 @@ const boxTarget = {
   drop(props) {
 		// console.log('props, monitor, component', props);
 		
-    return { page: props.index }
+    return { page: props.pageNo }
   },
 }
 
@@ -92,7 +92,7 @@ class Page extends React.Component {
 			addNewField
 		} = this.props;
 		// console.log('didDrop', didDrop, 'dropResult', dropResult, 'item', item);
-		// console.log('didDrop', didDrop, 'dropResult', dropResult);
+		console.log('didDrop', didDrop, 'dropResult', dropResult);
 		
 		if (didDrop && !prevProps.didDrop) {
 			// when the element is dropped on the drop zone then 
@@ -173,7 +173,7 @@ class Page extends React.Component {
 
 
   render() {
-    const { classes, canDrop, isOver, connectDropTarget, page } = this.props;
+    const { classes, canDrop, isOver, connectDropTarget, page, pageNo } = this.props;
 		const isActive = canDrop && isOver;
 		// #f8f5f5
     let backgroundColor = '#ececec'
@@ -191,7 +191,7 @@ class Page extends React.Component {
 					{/* loop through each page field and display them */}
 					{
 						page.map((i, index) => (
-							<FieldPreview key={index} index={index} field={i} disabled={true} />
+							<FieldPreview key={index} pageNo={pageNo} index={index} field={i} disabled={true} />
 						))
 					}
 				</Paper>
@@ -202,6 +202,8 @@ class Page extends React.Component {
 
 Page.propTypes = {
 	classes: PropTypes.object.isRequired,
+	page: PropTypes.array.isRequired,
+	pageNo: PropTypes.number.isRequired
 };
 
 function mapStateToProps(state) {
