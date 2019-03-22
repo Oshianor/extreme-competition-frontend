@@ -36,7 +36,7 @@ class MyApp extends App {
             GIS
           </title>
           <meta charSet="UTF-8" />
-          <meta name="author" content="6J3A00rGIGRSQz3GX9F9eGrFgdufldnQEEfuUbdN" />
+          <meta name="author" content="RkMMrKdvWdj6e6mu8qiLMQqHNyDL3TwLyuqgHIZk" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" />
           <link rel="icon" type="image/png" href="/static/favicon.png" />
