@@ -8,12 +8,10 @@ export const defVal = {
 			first: {
 				type: "single_line",
 				label: "First Name",
-				visible: true
 			},
 			last: {
 				type: "single_line",
 				label: "Last Name",
-				visible: true
 			}
 		},
 		required: false,
@@ -92,6 +90,17 @@ export const defVal = {
 			max: 6000,
 			format: "characters" // word
 		},
+		required: false,
+		disabled: false,
+		visible: true
+	},
+	phone: {
+		type: "phone",
+		label: "Phone",
+		instruction: "",
+		size: "m",
+		format: "international", // "###-###-####"
+		initialValue: "",
 		required: false,
 		disabled: false,
 		visible: true
@@ -204,17 +213,6 @@ export const defVal = {
 			min: "",
 			max: ""
 		},
-		required: false,
-		disabled: false,
-		visible: true
-	},
-	phone: {
-		type: "phone",
-		label: "Phone",
-		instruction: "",
-		size: "m",
-		format: "international", // "###-###-####"
-		initialValue: "",
 		required: false,
 		disabled: false,
 		visible: true

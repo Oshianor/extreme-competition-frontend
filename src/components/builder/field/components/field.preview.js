@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import SingleLine from './single_line/single_line.field';
 import MultiLine from "./multi_line/multi_line.field";
+import Phone from "./phone/phone.field";
+import Name from './name/name.field';
 import PropTypes from 'prop-types';
 
 
@@ -18,6 +20,10 @@ class FieldPreview extends Component {
 				return <SingleLine pageNo={pageNo} index={index} field={field} disabled={disabled} />;
 			case 'multi_line':
 				return <MultiLine pageNo={pageNo} index={index} field={field} disabled={disabled} />;
+			case 'phone':
+				return <Phone pageNo={pageNo} index={index} field={field} disabled={disabled} />;
+			case 'name':
+				return <Name pageNo={pageNo} index={index} field={field} disabled={disabled} />;
 			default:
 				break;
 		}

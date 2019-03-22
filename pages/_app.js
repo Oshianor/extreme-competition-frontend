@@ -39,7 +39,7 @@ class MyApp extends App {
           <meta name="author" content="Abundance" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" />
-
+          <meta name="tipestry" content="cKp0jme6mx55P5alRaQLdRRhE5IFE3j1wfCXi4tc" />
           <link rel="icon" type="image/png" href="/static/favicon.png" />
         </Head>
 

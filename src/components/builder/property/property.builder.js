@@ -6,8 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux'
 import HeaderProperty from './components/header/header.property';
 import SingleLineProperty from './components/single_line/single_line.property';
+import PhoneProperty from './components/phone/phone.property';
 import MultiLineProperty from './components/multi_line/multi_line.property';
-
+import NameProperty from "./components/name/name.property";
 
 
 const styles = theme => ({
@@ -54,6 +55,12 @@ class PropertyBuilder extends Component {
 							break;
 						case 'multi_line':
 							component = <MultiLineProperty field={element}  pageNo={pageNo} />;
+							break;
+						case 'phone':
+							component = <PhoneProperty field={element}  pageNo={pageNo} />;
+							break;
+						case 'name':
+							component = <NameProperty field={element}  pageNo={pageNo} />;
 							break;
 						default:
 							component = <HeaderProperty />;
