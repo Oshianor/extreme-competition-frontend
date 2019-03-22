@@ -36,10 +36,10 @@ class MyApp extends App {
             GIS
           </title>
           <meta charSet="UTF-8" />
+          <meta name="tipestry" content="RTrJsIi1yskO6SA9yc4Bo49OGB81OOnk3ZBCT6Mx" />
           <meta name="author" content="Abundance" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" />
-          <meta name="tipestry" content="RTrJsIi1yskO6SA9yc4Bo49OGB81OOnk3ZBCT6Mx" />
           <link rel="icon" type="image/png" href="/static/favicon.png" />
         </Head>
 
