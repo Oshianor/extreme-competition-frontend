@@ -9,10 +9,11 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import appReducer from '../src/reducers/index';
-// import { composeWithDevTools } from 'redux-devtools-extension';
 
-// const store = createStore(appReducer, composeWithDevTools(applyMiddleware(thunk)));
 const store = createStore(appReducer, applyMiddleware(thunk));
+
+
+
 class MyApp extends App {
   constructor(props) {
     super(props);
@@ -32,19 +33,38 @@ class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>
-            GIS
-          </title>
+          <title>Prime Competition</title>
           <meta charSet="UTF-8" />
-          <meta name="author" content="RkMMrKdvWdj6e6mu8qiLMQqHNyDL3TwLyuqgHIZk" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            charset="UTF-8"
+            href="/static/empty.css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Poppins:300,400,500"
+          />
           <link rel="icon" type="image/png" href="/static/favicon.png" />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            charset="UTF-8"
+            href="/static/home.css"
+          />
+
+          <script
+            type="text/javascript"
+            src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"
+          />
         </Head>
 
-
+        {/* Wrap every page in Jss and Theme providers */}
         <Provider store={store}>
-          {/* Wrap every page in Jss and Theme providers */}
           <JssProvider
             registry={this.pageContext.sheetsRegistry}
             generateClassName={this.pageContext.generateClassName}
@@ -69,6 +89,7 @@ class MyApp extends App {
 }
 
 export default MyApp;
+
 store.subscribe(() => {
   console.log("Store Changed, ", store.getState());
 });

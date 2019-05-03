@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import defaulty from './default.reducers'
-import builder from "./builder.reducer";
+import dataReducers from "./dataReducers";
 
 const appReducer = combineReducers({
-  default: defaulty,
-  builder: builder,
+  data: dataReducers,
 });
 
 export default appReducer;

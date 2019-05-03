@@ -1,30 +1,33 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
+
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Home from "../src/containers/home/home";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getToken, getMe } from "../src/actions/data";
+import { getToken, getMe, getTickets } from "../src/actions/data";
 import axios from 'axios';
 import { config } from '../config';
 import Head from 'next/head';
+import GameContainer from "../src/containers/game/game"
 
 
-class Index extends React.Component {  
-  static async getInitialProps() {
-    let game = await axios.get(config.getCurrentGames);
+class Game extends React.Component {  
+  static async getInitialProps({ query }) {
+    let game = await axios.get(config.getGame + query.id);
+    let tick = await axios.get(config.getTakenTickets + query.id);
     let games = JSON.stringify(game.data.content);
+    let ticket = JSON.stringify(tick.data.content);
 
     return {
-      games
+      games,
+      ticket
     }
-  }
-  
+	}
+	
   async componentDidMount() {
-    const { getToken, getMe } = this.props;
+    const { getToken, getMe, getTickets, ticket } = this.props;
     let token = localStorage.getItem('token');
+    let tickets = JSON.parse(ticket);
     
     if(token) {
       const options = {
@@ -39,6 +42,7 @@ class Index extends React.Component {
       let me = await axios(options);
       getMe(me.data.content);
     }
+    getTickets(tickets)
     getToken(token);
   }
   
@@ -49,31 +53,18 @@ class Index extends React.Component {
     
     return (
       <div>
+        {/* <Head>
+          <link rel="stylesheet" type="text/css" charset="UTF-8" href="/static/home.css" />
+        </Head> */}
         <Head>
           <link
             rel="stylesheet"
             type="text/css"
             charset="UTF-8"
-            href="/static/containerStyle.css"
-          />
-          <link
-            rel="stylesheet"
-            type="text/css"
-            charset="UTF-8"
-            href="/static/sliderStyle.css"
-          />
-          <link
-            rel="stylesheet"
-            type="text/css"
-            charset="UTF-8"
-            href="/static/home.css"
+            href="/static/empty.css"
           />
         </Head>
-        <Home
-          games={game.game}
-          testimonial={game.testimonial}
-          eight={game.eight}
-        />
+        <GameContainer game={game} />
       </div>
     );
   }
@@ -88,8 +79,9 @@ class Index extends React.Component {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getToken: getToken,
-    getMe: getMe
+    getMe: getMe,
+    getTickets: getTickets
   }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Index);
+export default connect(null, mapDispatchToProps)(Game);
