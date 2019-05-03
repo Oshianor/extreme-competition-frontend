@@ -122,39 +122,32 @@ class Header extends React.Component {
     // console.log("router", router);
     
     return (
-      <div className={classes.appBar} >
+      <div className={classes.appBar}>
         <div className={classes.root}>
-          <AppBar position="static" className={classes.rootAppBar} >
+          <AppBar position="static" className={classes.rootAppBar}>
             <Toolbar>
-              <Link href="/">
-                <a className={classes.title}>
-                  <img src="/static/extremecompetitions.jpeg" style={{ width: 75, height: 75 }} />
-                </a>
-              </Link>
+              <a href="/" className={classes.title}>
+                <img
+                  src="/static/extremecompetitions.jpeg"
+                  style={{ width: 75, height: 75 }}
+                />
+              </a>
               <div className={classes.grow} />
-              
-              {
-                data.me &&
-                  data.me.isAdmin ?
-                    this.displayAdminLink()
-                  : ""
-              }
 
-              <Link href='/' prefetch>
-                <a style={{ textDecoration: 'none' }} >
-                  <Button
-                    color="primary"
-                    size="medium"
-                    className={classes.butt}
-                  >
-                    Home
-                  </Button>
-                </a>
-              </Link>
-              {
-                router.pathname === "/" &&
+              {data.me && data.me.isAdmin ? this.displayAdminLink() : ""}
+
+              <a href="/" style={{ textDecoration: "none" }}>
+                <Button
+                  color="primary"
+                  size="medium"
+                  className={classes.butt}
+                >
+                  Home
+                </Button>
+              </a>
+              {router.pathname === "/" && (
                 <>
-                  <a href="/#faq" style={{ textDecoration: 'none' }} >
+                  <a href="/#faq" style={{ textDecoration: "none" }}>
                     <Button
                       color="primary"
                       size="medium"
@@ -163,7 +156,10 @@ class Header extends React.Component {
                       FAQ
                     </Button>
                   </a>
-                  <a href='/#testimonial' style={{ textDecoration: 'none' }} >
+                  <a
+                    href="/#testimonial"
+                    style={{ textDecoration: "none" }}
+                  >
                     <Button
                       color="primary"
                       size="medium"
@@ -173,52 +169,44 @@ class Header extends React.Component {
                     </Button>
                   </a>
                 </>
-              }
-              <Link href='/winners' prefetch>
-                <a style={{ textDecoration: 'none' }} >
-                  <Button
-                    color="primary"
-                    size="medium"
-                    className={classes.butt}
-                  >
-                    Winners
-                  </Button>
-                </a>
-              </Link>
-              {
-                data.token ?
-                  <IconButton color="primary" onClick={this.handleLogout} >
-                    <Logout />
-                  </IconButton>
-                :
-                  <>
-                  <Link href="/login" >
-                    <a style={{ textDecoration: "none" }}>
-                      <Button
-                        color="primary"
-                        variant="extendedFab"
-                        onClick={this.handleAuth}
-                        className={classes.but}
-                      >
-                        Login
-                      </Button>
-                    </a>
-                  </Link>
-                  
-                  <Link href="/register" >
-                    <a style={{ textDecoration: "none" }}>
-                      <Button
-                        color="primary"
-                        variant="extendedFab"
-                        onClick={this.handleAuth}
-                        className={classes.but}
-                      >
-                        Register
-                      </Button>
-                    </a>
-                  </Link>
+              )}
+              <a href="/winners" style={{ textDecoration: "none" }}>
+                <Button
+                  color="primary"
+                  size="medium"
+                  className={classes.butt}
+                >
+                  Winners
+                </Button>
+              </a>
+              {data.token ? (
+                <IconButton color="primary" onClick={this.handleLogout}>
+                  <Logout />
+                </IconButton>
+              ) : (
+                <>
+                  <a href="/login" style={{ textDecoration: "none" }}>
+                    <Button
+                      color="primary"
+                      variant="extendedFab"
+                      onClick={this.handleAuth}
+                      className={classes.but}
+                    >
+                      Login
+                    </Button>
+                  </a>
+                  <a href="/register" style={{ textDecoration: "none" }}>
+                    <Button
+                      color="primary"
+                      variant="extendedFab"
+                      onClick={this.handleAuth}
+                      className={classes.but}
+                    >
+                      Register
+                    </Button>
+                  </a>
                 </>
-              }
+              )}
             </Toolbar>
           </AppBar>
           {/* {
