@@ -175,6 +175,15 @@ class Header extends React.Component {
                   </a>
                 </>
               )}
+              <a href="/how-to-play" style={{ textDecoration: "none" }}>
+                <Button
+                  color="primary"
+                  size="medium"
+                  className={classes.butt}
+                >
+                  How To Play
+                </Button>
+              </a>
               <a href="/winners" style={{ textDecoration: "none" }}>
                 <Button
                   color="primary"

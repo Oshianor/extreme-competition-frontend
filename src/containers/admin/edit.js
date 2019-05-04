@@ -248,7 +248,7 @@ class Edit extends Component {
 
 	handleChangeSlot = (event) => {
 		let reg = /[^0-9]/g;
-		console.log('reg.test(event.target.value)', !reg.test(event.target.value));
+		// console.log('reg.test(event.target.value)', !reg.test(event.target.value));
 		
 		if(!reg.test(event.target.value)) {
 			this.setState({

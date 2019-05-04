@@ -171,7 +171,12 @@ class Create extends Component {
 		formData.append('prize', prize);
 
     try {
-      let create = await axios.post(config.createTestimonial, formData, { headers: { 'x-auth-token': token }});
+      let create = await axios.post(config.createTestimonial, formData, {
+        headers: {
+          "x-auth-token": token,
+          "Access-Control-Allow-Origin": "*"
+        }
+      });
 			console.log("LOGIN", create);
 			if (create.data.error) {
 				this.setState({

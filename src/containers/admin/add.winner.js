@@ -111,7 +111,12 @@ class FormDialog extends React.Component {
     // formData.append("gameId", gameId);
 
     try {
-      let create = await axios.post(config.createWinner, formData,  { headers: { 'x-auth-token': token }});
+      let create = await axios.post(config.createWinner, formData, {
+        headers: {
+          "x-auth-token": token,
+          "Access-Control-Allow-Origin": "*"
+        }
+      });
       console.log("create", create);
       if (create.data.error) {
         this.setState({

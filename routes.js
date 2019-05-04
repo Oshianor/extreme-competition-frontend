@@ -2,7 +2,8 @@ const nextRoutes = require('next-routes')
 const routes = module.exports = nextRoutes();
 
 routes.add('index', '/');
-routes.add('login', '/login');
+routes.add("login", "/login");
+routes.add('howToPlay', '/how-to-play');
 routes.add('register', '/register');
 routes.add('winners', '/winners');
 routes.add('addwinner', '/admin/winner/:token');
