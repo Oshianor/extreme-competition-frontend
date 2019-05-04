@@ -312,7 +312,7 @@ class GameContainer extends Component {
             ))}
           </div>
 
-          {game.status && (
+          {data.token && game.status && (
             // <Button
             //   style={{ width: 200, color: "white" }}
             //   color="primary"
