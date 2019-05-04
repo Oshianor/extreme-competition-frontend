@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import isEmail from 'validator/lib/isEmail';
 import isEmpty from 'validator/lib/isEmpty';
@@ -18,7 +17,7 @@ import { config } from '../../../config';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getToken, getMe } from "../../actions/data";
-import { withRouter } from "next/router";
+import Router, { withRouter } from "next/router";
 import { Input } from '@material-ui/core';
 
 
@@ -184,7 +183,8 @@ class LoginComponent extends Component {
         localStorage.setItem('token', login.headers['x-auth-token']);
         getToken(login.headers['x-auth-token']);
         getMe(login.data.content);
-        router.push("/");
+        // router.push("/");
+        Router.push("/error", "/");
       }
     } catch (error) {
       console.log("ERROR : ", error);

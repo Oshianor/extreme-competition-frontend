@@ -56,14 +56,14 @@ class Game extends React.Component {
         {/* <Head>
           <link rel="stylesheet" type="text/css" charset="UTF-8" href="/static/home.css" />
         </Head> */}
-        <Head>
+        {/* <Head>
           <link
             rel="stylesheet"
             type="text/css"
             charset="UTF-8"
             href="/static/empty.css"
           />
-        </Head>
+        </Head> */}
         <GameContainer game={game} />
       </div>
     );

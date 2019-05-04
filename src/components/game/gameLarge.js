@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Countdown from '../countdown/countdown'
 import Router from 'next/router';
 import { image } from '../../../config';
-import Link from "next/link"
 
 
 const styles = theme => ({
@@ -108,28 +107,25 @@ function ButtonBases(props) {
   return (
     <div className={classes.container}>
       {more.map((game, index) => (
-        <Link
+        <a
           key={game._id}
           href={"/game/" + nutralizeTitle(game.name) + "/" + game._id}
+          className={classes.root}
+          style={{ backgroundImage: "url(" + image + game.img[0] + ")" }}
         >
-          <a
-            className={classes.root}
-            style={{ backgroundImage: "url(" + image + game.img[0] + ")" }}
-          >
-            {!game.status ? (
-              <div className={classes.side}>
-                <Typography className={classes.sideNum}>Sold Out</Typography>
-              </div>
-            ) : (
-              <div className={classes.price}>
-                <Typography className={classes.priceText}>
-                  &#8358;{game.amt}
-                </Typography>
-              </div>
-            )}
-            <Typography className={classes.name}>{game.name}</Typography>
-          </a>
-        </Link>
+          {!game.status ? (
+            <div className={classes.side}>
+              <Typography className={classes.sideNum}>Sold Out</Typography>
+            </div>
+          ) : (
+            <div className={classes.price}>
+              <Typography className={classes.priceText}>
+                &#8358;{game.amt}
+              </Typography>
+            </div>
+          )}
+          <Typography className={classes.name}>{game.name}</Typography>
+        </a>
       ))}
     </div>
   );

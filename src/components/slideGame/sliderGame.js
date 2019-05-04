@@ -9,7 +9,6 @@ import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
 import moment from 'moment'
 import Countdown from '../countdown/countdown'
-import Link from 'next/link'
 
 
 const styles = theme => ({
@@ -57,16 +56,14 @@ class SimpleSlider extends Component {
 								<Typography variant="body1" >
 									{moment(game.createdAt).fromNow()}
 								</Typography>
-								<Link href={"/game/" + this.nutralizeTitle(game.name) + "/" + game._id} >
-									<a style={{ textDecoration: "none" }}>
-										<Button
-											size="large"
-											style={{ background: "red", color: "white" }}
-										>
-											Enter Now
-										</Button>
-									</a>
-								</Link>
+								<a href={"/game/" + this.nutralizeTitle(game.name) + "/" + game._id} style={{ textDecoration: "none" }}>
+									<Button
+										size="large"
+										style={{ background: "red", color: "white" }}
+									>
+										Enter Now
+									</Button>
+								</a>
 							</div>
 							<section>
 								<Countdown timer={game.timer} />

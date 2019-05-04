@@ -48,6 +48,9 @@ const styles = theme => ({
 		marginTop: 20
 	},
 	textUnder: {
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
 		fontSize: 13,
 		color: 'white',
 		flexWrap: 'wrap',
@@ -79,37 +82,55 @@ const styles = theme => ({
 function Footer(props) {
 	const { classes } = props;
 	return (
-		<div className={classes.root}>
-			<div className={classes.demo}>
-				<div>
-					<Typography variant='h4' className={classes.head} >
-						We're Listening
-					</Typography>
-					<Typography variant='h6' className={classes.textbody} >
-						Phone: +234 812-178-4611
-					</Typography>
-					<Typography variant='h6' className={classes.textbody} >
-						Email: extremecompetitions@gmail.com
-					</Typography>
-				</div>
-				
-				<div>
-					<Typography variant='h6' className={classes.head} >
-						Social Links
-					</Typography>
-					<div>
-						<img src="/static/facebook.png"  width='30' className={classes.img} />
-						<img src="/static/instagram.png" width='30' className={classes.img} />
-						<img src="/static/twitter.png" width='30' className={classes.img} />
-					</div>
-				</div>
-			</div>
+    <div className={classes.root}>
+      <div className={classes.demo}>
+        <div>
+          <Typography variant="h4" className={classes.head}>
+            We're Listening
+          </Typography>
+          <Typography variant="h6" className={classes.textbody}>
+            Phone: +234 812-178-4611
+          </Typography>
+          <Typography variant="h6" className={classes.textbody}>
+            Email: extremecompetitions@gmail.com
+          </Typography>
+        </div>
 
-			<Typography className={classes.textUnder}>
-				Powered by <strong>TCAI</strong> © 2017 – 2019 Extremecompetition.com. All rights reserved..
-			</Typography>
-		</div>
-	)
+        <div>
+          <Typography variant="h6" className={classes.head}>
+            Social Links
+          </Typography>
+          <div>
+            <img
+              src="/static/facebook.png"
+              width="30"
+              className={classes.img}
+            />
+            <img
+              src="/static/instagram.png"
+              width="30"
+              className={classes.img}
+            />
+            <img
+              src="/static/twitter.png"
+              width="30"
+              className={classes.img}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* <Typography className={classes.textUnder}>
+        Powered by <strong>TCAI</strong> © 2017 – 2019 Extremecompetition.com.
+        All rights reserved..
+      </Typography> */}
+      <Typography className={classes.textUnder}>
+        Powered by &nbsp;&nbsp;
+        <img src="/static/tcai.jpeg" style={{ width: 45, height: 45 }} />{" "}
+        &nbsp;&nbsp; ©2019 Extremecompetition.com. All rights reserved..
+      </Typography>
+    </div>
+  );
 }
 
 Footer.propTypes = {

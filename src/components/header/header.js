@@ -7,7 +7,6 @@ import Grid from '@material-ui/core/Grid';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Link from 'next/link';
 // import Auth from '../auth/auth';
 import Logout from '@material-ui/icons/ExitToAppRounded';
 import { connect } from 'react-redux';
@@ -23,23 +22,25 @@ const styles = theme => ({
   root: {
     paddingRight: 15,
     paddingLeft: 15,
-    marginRight: 'auto',
-    marginLeft: 'auto',
+    marginRight: "auto",
+    marginLeft: "auto",
     backgroundColor: "transparent",
-    [theme.breakpoints.up('lg')]: { // large: 1280px or larger
-      width: 1170,
+    [theme.breakpoints.up("lg")]: {
+      // large: 1280px or larger
+      width: 1170
     },
-    [theme.breakpoints.up('xl')]: { // extra-large: 1920px or larger
-      width: 1366,
+    [theme.breakpoints.up("xl")]: {
+      // extra-large: 1920px or larger
+      width: 1366
     },
-    textAlign: 'center'
+    textAlign: "center"
   },
   rootAppBar: {
     backgroundColor: "transparent",
-    boxShadow: "0px 0px 0px 0px",
+    boxShadow: "0px 0px 0px 0px"
   },
   largeText: {
-    color: 'white'
+    color: "white"
   },
   title: {
     display: "flex",
@@ -76,6 +77,14 @@ const styles = theme => ({
     "&:hover": {
       color: "white"
     }
+  },
+  img: {
+    width: 150,
+      height: 105,
+    [theme.breakpoints.down("sm")]: {
+      width: 75,
+      height: 75
+    }
   }
 });
 
@@ -101,19 +110,15 @@ class Header extends React.Component {
   displayAdminLink = () => {
     const { classes, data } = this.props;
     return (
-      <>
-       <Link href={"/admin/" + data.token}>
-          <a style={{ textDecoration: 'none' }} >
-            <Button
-              color="primary"
-              className={classes.butt}
-            >
-              Admin
-            </Button>
-          </a>
-        </Link>
-      </>
-    )
+      <a
+        href={"/admin/" + data.token}
+        style={{ textDecoration: "none" }}
+      >
+        <Button color="primary" className={classes.butt}>
+          Admin
+        </Button>
+      </a>
+    );
   }
 
 
@@ -125,11 +130,11 @@ class Header extends React.Component {
       <div className={classes.appBar}>
         <div className={classes.root}>
           <AppBar position="static" className={classes.rootAppBar}>
-            <Toolbar>
+            <Toolbar style={{ flexWrap: "wrap" }}>
               <a href="/" className={classes.title}>
                 <img
                   src="/static/extremecompetitions.jpeg"
-                  style={{ width: 75, height: 75 }}
+                  className={classes.img}
                 />
               </a>
               <div className={classes.grow} />

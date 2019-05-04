@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Home from "../src/containers/home/home";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -50,6 +48,12 @@ class Index extends React.Component {
     return (
       <div>
         <Head>
+          {/* <link
+            rel="stylesheet"
+            type="text/css"
+            charset="UTF-8"
+            href="/static/home.css"
+          /> */}
           <link
             rel="stylesheet"
             type="text/css"
@@ -61,12 +65,6 @@ class Index extends React.Component {
             type="text/css"
             charset="UTF-8"
             href="/static/sliderStyle.css"
-          />
-          <link
-            rel="stylesheet"
-            type="text/css"
-            charset="UTF-8"
-            href="/static/home.css"
           />
         </Head>
         <Home

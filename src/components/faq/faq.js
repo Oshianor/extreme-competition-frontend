@@ -154,7 +154,7 @@ class Faq extends Component {
 					</ExpansionPanelSummary>
 					<ExpansionPanelDetails>
 						<Typography variant="body2" style={{ color: "white" }} >
-							 Your prize will be delivered from a prime competitions team member within 5 days of the winner being announced.
+							 Your prize will be delivered from a extreme competitions team member within 5 days of the winner being announced.
 						</Typography>
 					</ExpansionPanelDetails>
 				</ExpansionPanel>

@@ -1,5 +1,7 @@
-const api = 'http://localhost:3000/api/';
-export const image = 'http://localhost:3000/game/';
+// const api = 'http://localhost:3000/api/';
+const api = "http://extremecompetitions/api/";
+// export const image = 'http://localhost:3000/game/';
+export const image = "http://extremecompetitions/public/game/";
 export const config = {
 	login: api + 'auth',
 	register: api + 'user',

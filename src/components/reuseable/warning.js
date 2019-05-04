@@ -7,7 +7,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import PropTypes from 'prop-types';
 import Grid from "@material-ui/core/Grid";
-import Link from 'next/link';
 import Typography from '@material-ui/core/Typography';
 
 function Transition(props) {

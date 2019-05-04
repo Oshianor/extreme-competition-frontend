@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import isEmail from 'validator/lib/isEmail';
 import isEmpty from 'validator/lib/isEmpty';
@@ -16,7 +15,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getToken } from "../../actions/data";
-import { withRouter } from "next/router";
+import Router, { withRouter } from "next/router";
 
 
 
@@ -179,10 +178,11 @@ class RegisterComponent extends Component {
       } else {
         localStorage.setItem('token', register.headers['x-auth-token']);
         getToken(register.headers['x-auth-token']);
+        // router.push("/");
+        Router.push("/error", "/");
         this.setState({
           res: { error: false,  msg: "" }
         })
-        router.push("/");
       }
       
     } catch (error) {

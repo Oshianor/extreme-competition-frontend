@@ -46,15 +46,15 @@ class Game extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Head>
+      <div style={{ background: "white" }}>
+        {/* <Head>
           <link
             rel="stylesheet"
             type="text/css"
             charset="UTF-8"
             href="/static/empty.css"
           />
-        </Head>
+        </Head> */}
         <AddWinner />
       </div>
     );

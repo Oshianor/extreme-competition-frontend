@@ -12,7 +12,6 @@ import Remove from "@material-ui/icons/DeleteRounded";
 import Edit from "@material-ui/icons/Edit";
 import Add from "@material-ui/icons/Add";
 import moment from 'moment';
-import Link from "next/link";
 import { connect } from 'react-redux';
 import Header from "../../components/header/header";
 import Grid from '@material-ui/core/Grid';
@@ -85,105 +84,118 @@ class SimpleTable extends Component{
     return (
       <div>
         <Header admin={true} />
-          <Grid container justify="center" >
-            <Grid
-              container
-              className={classes.tool}
-              alignItems="center"
-              justify="center"
-            >
-              <Grid item xs={12} sm={12} md={12}>
-                <div style={{ display: 'flex', justifyContent: "flex-end", marginTop: 20 }} >
-                  <Link href={"/admin/winner/" + token}>
-                    <a style={{ textDecoration: 'none' }}>
-                      <Button size="large" color="primary" variant="contained" >
-                        Add Winners
-                      </Button>
-                    </a>
-                  </Link>
-                  <Link href={"/testimonial/" + token}>
-                    <a style={{ textDecoration: 'none' }}>
-                      <Button size="large" color="secondary" variant="contained" >
-                        Testimonial
-                      </Button>
-                    </a>
-                  </Link>
-                  <Link href={"/admin/create/" + token}>
-                    <a style={{ textDecoration: 'none' }}>
-                      <Button size="large" color="primary" variant="contained" >
-                        Add Game
-                      </Button>
-                    </a>
-                  </Link>
-                </div>
-              </Grid>
-              
-              
-              <Typography variant="h5">
-                Manage Games
-              </Typography>
+        <Grid container justify="center">
+          <Grid
+            container
+            className={classes.tool}
+            alignItems="center"
+            justify="center"
+          >
+            <Grid item xs={12} sm={12} md={12}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginTop: 20
+                }}
+              >
+                <a
+                  href={"/admin/winner/" + token}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button size="large" color="primary" variant="contained">
+                    Add Winners
+                  </Button>
+                </a>
+                <a
+                  href={"/testimonial/" + token}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button
+                    size="large"
+                    color="secondary"
+                    variant="contained"
+                  >
+                    Testimonial
+                  </Button>
+                </a>
+                <a
+                  href={"/admin/create/" + token}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button size="large" color="primary" variant="contained">
+                    Add Game
+                  </Button>
+                </a>
+              </div>
+            </Grid>
 
-              <Paper className={classes.root}>
-                <Table className={classes.table}>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Name</TableCell>
-                      <TableCell align="right">Amount</TableCell>
-                      <TableCell align="right">Total Images</TableCell>
-                      <TableCell align="right">Status</TableCell>
-                      <TableCell align="right">Timer</TableCell>
-                      <TableCell align="right">Total plays</TableCell>
-                      <TableCell align="right">Actions</TableCell>
-                      <TableCell align="right">Created At</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data.games.map(row => (
-                      <TableRow key={row._id}>
-                        <TableCell component="th" scope="row">
-                          {row.name}
-                        </TableCell>
-                        <TableCell align="right">
-                          &#8358;{row.amt}
-                        </TableCell>
-                        <TableCell align="right">
-                          {row.img.length}
-                        </TableCell>
-                        <TableCell align="right" style={row.status ? { color: "green" } : { color: 'red' }}>
-                          {row.status ? "Active" : "Inactive"}
-                        </TableCell>
-                        <TableCell align="right">
-                          {moment(row.timer).fromNow()}
-                        </TableCell>
-                        <TableCell align="right">
-                          {row.play.length}
-                        </TableCell>
-                        <TableCell align="right">
-                          <Link href={"/admin/edit/" + token + "/" + row._id}>
-                            <a style={{ textDecoration: 'none' }} >
-                              <IconButton>
-                                <Edit style={{ fontSize: 16 }} />
-                              </IconButton>
-                            </a>
-                          </Link>
-                          <IconButton onClick={this.handleDeleteGame.bind(this, row._id)} >
-                            <Remove style={{ fontSize: 16 }} />
+            <Typography variant="h5">Manage Games</Typography>
+
+            <Paper className={classes.root}>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell align="right">Amount</TableCell>
+                    <TableCell align="right">Total Images</TableCell>
+                    <TableCell align="right">Status</TableCell>
+                    <TableCell align="right">Timer</TableCell>
+                    <TableCell align="right">Total plays</TableCell>
+                    <TableCell align="right">Actions</TableCell>
+                    <TableCell align="right">Created At</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.games.map(row => (
+                    <TableRow key={row._id}>
+                      <TableCell component="th" scope="row">
+                        {row.name}
+                      </TableCell>
+                      <TableCell align="right">&#8358;{row.amt}</TableCell>
+                      <TableCell align="right">{row.img.length}</TableCell>
+                      <TableCell
+                        align="right"
+                        style={
+                          row.status ? { color: "green" } : { color: "red" }
+                        }
+                      >
+                        {row.status ? "Active" : "Inactive"}
+                      </TableCell>
+                      <TableCell align="right">
+                        {moment(row.timer).fromNow()}
+                      </TableCell>
+                      <TableCell align="right">{row.play.length}</TableCell>
+                      <TableCell align="right">
+                        <a
+                          href={"/admin/edit/" + token + "/" + row._id}
+                          style={{ textDecoration: "none" }}
+                        >
+                          <IconButton>
+                            <Edit style={{ fontSize: 16 }} />
                           </IconButton>
-                        </TableCell>
-                        <TableCell align="right">
-                          {moment(row.createdAt).fromNow()}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </Paper>
+                        </a>
+                        <IconButton
+                          onClick={this.handleDeleteGame.bind(
+                            this,
+                            row._id
+                          )}
+                        >
+                          <Remove style={{ fontSize: 16 }} />
+                        </IconButton>
+                      </TableCell>
+                      <TableCell align="right">
+                        {moment(row.createdAt).fromNow()}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Paper>
 
-
-              <br />
-              <br />
-              <br />
-              
+            <br />
+            <br />
+            <br />
           </Grid>
         </Grid>
         {/* <AddWinners open={open} gameId={gameId} handleClose={this.handleClose} /> */}

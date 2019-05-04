@@ -51,14 +51,14 @@ class Game extends React.Component {
   render() {
     return (
       <div style={{ background: 'white' }}>
-      <Head>
+      {/* <Head>
           <link
             rel="stylesheet"
             type="text/css"
             charset="UTF-8"
             href="/static/empty.css"
           />
-        </Head>
+        </Head> */}
         <AdminTable />
       </div>
     );

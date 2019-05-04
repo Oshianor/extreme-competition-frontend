@@ -33,7 +33,7 @@ class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>Prime Competition</title>
+          <title>Extreme Competition</title>
           <meta charSet="UTF-8" />
           <meta
             name="viewport"
@@ -49,7 +49,7 @@ class MyApp extends App {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Poppins:300,400,500"
           />
-          <link rel="icon" type="image/png" href="/static/favicon.png" />
+          {/* <link rel="icon" type="image/png" href="/static/favicon.png" /> */}
           <link
             rel="stylesheet"
             type="text/css"

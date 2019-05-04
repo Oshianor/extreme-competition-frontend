@@ -28,7 +28,8 @@ class Index extends React.Component {
     let token = localStorage.getItem('token');
     
     if(token) {
-      Router.push('/')
+      // Router.push('/')
+      Router.push("/error", "/");
     }
 
   }
@@ -36,14 +37,14 @@ class Index extends React.Component {
   render() {
     return (
       <div>
-        <Head>
+        {/* <Head>
           <link
             rel="stylesheet"
             type="text/css"
             charset="UTF-8"
             href="/static/empty.css"
           />
-        </Head>
+        </Head> */}
         <Header />
         <Register />
       </div>

@@ -54,14 +54,14 @@ class Game extends React.Component {
     
     return (
       <div style={{ background: 'white' }}>
-        <Head>
+        {/* <Head>
           <link
             rel="stylesheet"
             type="text/css"
             charset="UTF-8"
             href="/static/empty.css"
           />
-        </Head>
+        </Head> */}
         
         <AdminEdit game={game} />
       </div>
