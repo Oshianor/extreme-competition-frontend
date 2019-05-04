@@ -205,7 +205,12 @@ class Create extends Component {
 		formData.append('slot', slot);
 
     try {
-      let create = await axios.post(config.createGame, formData, { headers: { 'x-auth-token': token }});
+      let create = await axios.post(config.createGame, formData, {
+        headers: {
+          "x-auth-token": token,
+          "Access-Control-Allow-Origin": "*"
+        }
+      });
 			console.log("LOGIN", create);
 			if (create.data.error) {
 				this.setState({
