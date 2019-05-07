@@ -88,11 +88,11 @@ function Footer(props) {
           <Typography variant="h4" className={classes.head}>
             We're Listening
           </Typography>
-          <Typography variant="h6" className={classes.textbody}>
+          {/* <Typography variant="h6" className={classes.textbody}>
             Phone: +234 812-178-4611
-          </Typography>
+          </Typography> */}
           <Typography variant="h6" className={classes.textbody}>
-            Email: extremecompetitions@gmail.com
+            Email: info.extremecompetitions@gmail.com
           </Typography>
         </div>
 
@@ -101,21 +101,42 @@ function Footer(props) {
             Social Links
           </Typography>
           <div>
-            <img
-              src="/static/facebook.png"
-              width="30"
-              className={classes.img}
-            />
-            <img
-              src="/static/instagram.png"
-              width="30"
-              className={classes.img}
-            />
-            <img
+            <a
+              target="_blank"
+              href="https://m.facebook.com/extremecompeitions/"
+            >
+              <img
+                src="/static/facebook.png"
+                width="30"
+                className={classes.img}
+              />
+            </a>
+            <a
+              target="_blank"
+              href="https://www.instagram.com/extreme.competitions/"
+            >
+              <img
+                src="/static/instagram.png"
+                width="30"
+                className={classes.img}
+              />
+            </a>
+
+            <a
+              target="_blank"
+              href="https://www.youtube.com/channel/UCE7l5X1y375DYez5bamNVcw?view_as=subscriber"
+            >
+              <img
+                src="/static/youtube.png"
+                width="30"
+                className={classes.img}
+              />
+            </a>
+            {/* <img
               src="/static/twitter.png"
               width="30"
               className={classes.img}
-            />
+            /> */}
           </div>
         </div>
       </div>

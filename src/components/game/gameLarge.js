@@ -16,7 +16,7 @@ const styles = theme => ({
     justifyContent: "space-between"
   },
   root: {
-    width: 250,
+    width: 200,
     height: 200,
     // min-height: 250px;
     backgroundRepeat: "no-repeat",
@@ -68,10 +68,8 @@ const styles = theme => ({
     width: "100%",
     textAlign: "center",
     fontSize: 20,
-    fontWeight: "500"
-    // "&:hover": {
-    //   backgroundColor: "black"
-    // }
+    fontWeight: "500",
+    backgroundColor: "black"
   },
   price: {
     padding: "0 20px",

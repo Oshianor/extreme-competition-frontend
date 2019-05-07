@@ -106,7 +106,7 @@ class GameContainer extends Component {
       index: 0,
       select: [],
       warning: false,
-      key: "FLWPUBK-eaa6f77031ff079936882527764af228-X", // RavePay PUBLIC KEY
+      key: "FLWPUBK-aca36ccf8d805abd79420b944b4191a0-X" // RavePay PUBLIC KEY
     };
   }
 
