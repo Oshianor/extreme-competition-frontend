@@ -7,7 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import classnames from "classnames"
 import Header from "../../components/header/header";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
+import Grid from '@material-ui/core/Grid';
 import axios from "axios";
 import { bindActionCreators } from 'redux';
 import { getToken, getTickets } from "../../actions/data";
@@ -257,13 +258,13 @@ class GameContainer extends Component {
       <div>
         <Header admin={true} />
         <div className={classes.root}>
-          <div className={classes.con}>
-            <div className={classes.container}>
+          <Grid container>
+            <Grid xs={12} sm={12} md={6} lg={6} xl={6} >
               {/* <div className={classes.con} > */}
               <MobileSlider img={game.img} />
               {/* </div> */}
-            </div>
-            <div className={classes.container}>
+            </Grid>
+            <Grid xs={12} sm={12} md={6} lg={6} xl={6} >
               <Typography variant="h4" color="primary" className={classes.head}>
                 {game.name}
               </Typography>
@@ -276,8 +277,8 @@ class GameContainer extends Component {
                 percent={(data.tickets.length / game.slot) * 100}
                 numLeft={game.slot - data.tickets.length}
               />
-            </div>
-          </div>
+            </Grid>
+          </Grid>
 
           <br />
           <div className={classes.ticket}>
@@ -360,3 +361,24 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(GameContainer));
 // export default withStyles(styles)(GameContainer);
+
+
+// <div className={classes.con}>
+//   <div className={classes.container}>
+//     <MobileSlider img={game.img} />
+//   </div>
+//   <div className={classes.container}>
+//     <Typography variant="h4" color="primary" className={classes.head}>
+//       {game.name}
+//     </Typography>
+//     <Competition
+//       name={game.name}
+//       timer={game.timer}
+//       amt={game.amt}
+//       status={game.status}
+//       select={select}
+//       percent={(data.tickets.length / game.slot) * 100}
+//       numLeft={game.slot - data.tickets.length}
+//     />
+//   </div>
+// </div>;
