@@ -12,20 +12,48 @@ import Countdown from '../countdown/countdown'
 
 
 const styles = theme => ({
-	root: {
-		// width: "100%",
-		// height: 400,
-		// [theme.breakpoints.up('lg')]: { // large: 1280px or larger
-		// 	height: 600,
-		// },
-	},
-	img: {
-		width: "100%",
-		height: 400,
-		[theme.breakpoints.up('lg')]: { // large: 1280px or larger
-			height: 600,
-		},
-	},
+  root: {
+    // width: "100%",
+    // height: 400,
+    // [theme.breakpoints.up('lg')]: { // large: 1280px or larger
+    // 	height: 600,
+    // },
+  },
+  img: {
+    width: "100%",
+    height: 400,
+    [theme.breakpoints.up("lg")]: {
+      // large: 1280px or larger
+      height: 600
+    }
+  },
+  side: {
+    // top: -10,
+    // right: -10,
+    width: 150,
+    height: 150,
+    // position: "absolute",
+    // zIndex: 9999,
+    // overflow: "hidden"
+  },
+  sideNum: {
+    // left: 9,
+    // top: 30,
+    backgroundColor: "red",
+    // transform: "rotate(45deg)",
+    // position: "absolute",
+    // display: "block",
+    width: 203,
+    boxShadow: "rgba(0, 0, 0, 0.1) 0px 5px 10px",
+    color: "white",
+    fontSize: 17,
+    fontWeight: 700,
+    lineHeight: 1,
+    textShadow: "rgba(0, 0, 0, 0.2) 0px 1px 1px",
+    textTransform: "uppercase",
+    textAlign: "center",
+    padding: "8px 0px"
+  }
 });
 
 
@@ -37,41 +65,52 @@ class SimpleSlider extends Component {
   render() {
     const { classes, games } = this.props;		
     return (
-			<Slider
-				className="slider-wrapper"
-				autoplay={2000}
-				buttonDisabled={true}
-			>
-				{
-					games.map((game, index) => (
-						<div 
-							key={game._id}
-							className="slider-content"
-							style={{ background: `url('${image + game.img[0]}') no-repeat center center` }} 
-						>
-							<div className="inner">
-								<Typography variant="h1" >
-									{game.name}
-								</Typography>
-								<Typography variant="body1" >
-									{moment(game.createdAt).fromNow()}
-								</Typography>
-								<a href={"/game/" + this.nutralizeTitle(game.name) + "/" + game._id} style={{ textDecoration: "none" }}>
-									<Button
-										size="large"
-										style={{ background: "red", color: "white" }}
-									>
-										Enter Now
-									</Button>
-								</a>
-							</div>
-							<section>
-								<Countdown timer={game.timer} />
-							</section>
-						</div>
-					))
-				}
-			</Slider>
+      <Slider
+        className="slider-wrapper"
+        autoplay={2000}
+        buttonDisabled={true}
+      >
+        {games.map((game, index) => (
+          <div
+            key={game._id}
+            className="slider-content"
+            style={{
+              background: `url('${image +
+                game.img[0]}') no-repeat center center`
+            }}
+          >
+            <section>
+              <Typography className={classes.side}>
+                <Typography className={classes.sideNum}>
+                  &#8358;{game.amt}
+                </Typography>
+              </Typography>
+            </section>
+            <div className="inner">
+              <Typography variant="h1">{game.name}</Typography>
+              <Typography variant="body1">
+                {moment(game.createdAt).fromNow()}
+              </Typography>
+              <a
+                href={
+                  "/game/" + this.nutralizeTitle(game.name) + "/" + game._id
+                }
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  size="large"
+                  style={{ background: "red", color: "white" }}
+                >
+                  Enter Now
+                </Button>
+              </a>
+            </div>
+            <section>
+              <Countdown timer={game.timer} />
+            </section>
+          </div>
+        ))}
+      </Slider>
     );
   }
 }

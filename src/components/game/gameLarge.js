@@ -13,12 +13,18 @@ const styles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center"
+    }
   },
   root: {
-    width: 200,
-    height: 200,
-    // min-height: 250px;
+    width: 320,
+    height: 250,
+    [theme.breakpoints.up("md")]: {
+      width: 400,
+      height: 250
+    },
     backgroundRepeat: "no-repeat",
     backgroundColor: "rgb(221, 221, 221)",
     position: "relative",
