@@ -18,6 +18,7 @@ import { connect } from 'react-redux';
 import Details from '../../components/competition/details';
 import Payment from "../../components/pay/pay"
 // import RavePaymentModal from "react-ravepayment";
+import Router, { withRouter } from "next/router";
 
 
 
@@ -194,9 +195,12 @@ class GameContainer extends Component {
 
   callback = async response => {
     console.log("responseresponse", response);
-    if (response.success) {
-      const { data, game, getTickets } = this.props;
+    if (response.data.data.status === "successful") {
+      const { data, game, getTickets, router } = this.props;
       const { select } = this.state;
+
+      console.log("gamegamegamegamegame", game, "routerrouterrouter", router);
+      
 
 			if (data.token) {
 				let dataDem = {
@@ -219,7 +223,8 @@ class GameContainer extends Component {
 				getTickets(games.data.content);
 				this.setState({
 					select: []
-				});
+        });
+        Router.push("/error", "/game/" + game.name + "/" + game._id);
 			} else {
 				this.setState({
 					warning: true
@@ -359,7 +364,10 @@ function mapDispatchToProps(dispatch) {
 	}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(GameContainer));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(withStyles(styles)(GameContainer)));
 // export default withStyles(styles)(GameContainer);
 
 
