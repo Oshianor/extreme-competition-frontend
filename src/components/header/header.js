@@ -14,8 +14,17 @@ import { bindActionCreators } from 'redux';
 import { getToken, getMe } from "../../actions/data";
 import Button from '@material-ui/core/Button';
 import MoreHeader from './more.header';
-import { withRouter } from 'next/router'
-
+import { withRouter } from 'next/router';
+import InputBase from "@material-ui/core/InputBase";
+import Badge from "@material-ui/core/Badge";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MailIcon from "@material-ui/icons/Mail";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import MoreIcon from "@material-ui/icons/MoreVert";
 
 
 const styles = theme => ({
@@ -80,52 +89,155 @@ const styles = theme => ({
   },
   img: {
     width: 150,
-      height: 105,
+    height: 105,
     [theme.breakpoints.down("sm")]: {
       width: 75,
       height: 75
+    }
+  },
+  sectionDesktop: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex"
+    }
+  },
+  sectionMobile: {
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none"
     }
   }
 });
 
 class Header extends React.Component {
-  // state = {
-  //   open: false
-  // }
+  state = {
+    anchorEl: null,
+    mobileMoreAnchorEl: null
+  };
 
-  // handleAuth = () => {
-  //   this.setState(state => ({
-  //     open: !state.open
-  //   }))
-  // }
+  handleProfileMenuOpen = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleMenuClose = () => {
+    this.setState({ anchorEl: null });
+    this.handleMobileMenuClose();
+  };
+
+  handleMobileMenuOpen = event => {
+    this.setState({ mobileMoreAnchorEl: event.currentTarget });
+  };
+
+  handleMobileMenuClose = () => {
+    this.setState({ mobileMoreAnchorEl: null });
+  };
 
   handleLogout = () => {
-		const { getToken, getMe } = this.props;
-		localStorage.removeItem('token');
+    const { getToken, getMe } = this.props;
+    localStorage.removeItem("token");
     getToken(null);
-    getMe(null)
-  }
-  
+    getMe(null);
+  };
 
   displayAdminLink = () => {
     const { classes, data } = this.props;
     return (
-      <a
-        href={"/admin/" + data.token}
-        style={{ textDecoration: "none" }}
-      >
+      <a href={"/admin/" + data.token} style={{ textDecoration: "none" }}>
         <Button color="primary" className={classes.butt}>
           Admin
         </Button>
       </a>
     );
-  }
-
+  };
 
   render() {
     const { classes, data, admin, router } = this.props;
     // console.log("router", router);
-    
+    const { anchorEl, mobileMoreAnchorEl } = this.state;
+    const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const renderMenu = (
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        transformOrigin={{ vertical: "top", horizontal: "right" }}
+        open={isMenuOpen}
+        onClose={this.handleMenuClose}
+      >
+        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+      </Menu>
+    );
+
+    const renderMobileMenu = (
+      <Menu
+        anchorEl={mobileMoreAnchorEl}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        transformOrigin={{ vertical: "top", horizontal: "right" }}
+        open={isMobileMenuOpen}
+        onClose={this.handleMenuClose}
+      >
+        <a
+          href="/"
+          style={{ textDecoration: "none", background: "transparent" }}
+        >
+          <MenuItem>Home</MenuItem>
+        </a>
+        {router.pathname === "/" && (
+          <>
+            <a
+              href="/#faq"
+              style={{ textDecoration: "none", background: "transparent" }}
+            >
+              <MenuItem>FAQ</MenuItem>
+            </a>
+            <a
+              href="/#testimonial"
+              style={{ textDecoration: "none", background: "transparent" }}
+            >
+              <MenuItem>Testimonials</MenuItem>
+            </a>
+          </>
+        )}
+        <a
+          href="/how-to-play"
+          style={{ textDecoration: "none", background: "transparent" }}
+        >
+          <MenuItem>How To Play</MenuItem>
+        </a>
+        <a
+          href="/winners"
+          style={{ textDecoration: "none", background: "transparent" }}
+        >
+          <MenuItem>Winners</MenuItem>
+        </a>
+        <a
+          href="/"
+          style={{ textDecoration: "none", background: "transparent" }}
+        >
+          <MenuItem>Home</MenuItem>
+        </a>
+        {data.token ? (
+          <MenuItem onClick={this.handleLogout}>
+            <IconButton color="primary">
+              <Logout />
+            </IconButton>
+            <p>Log Out</p>
+          </MenuItem>
+        ) : (
+          <>
+            <a href="/login" style={{ textDecoration: "none" }}>
+              <MenuItem>Login</MenuItem>
+            </a>
+            <a href="/register" style={{ textDecoration: "none" }}>
+              <MenuItem>Register</MenuItem>
+            </a>
+          </>
+        )}
+      </Menu>
+    );
+
     return (
       <div className={classes.appBar}>
         <div className={classes.root}>
@@ -139,94 +251,103 @@ class Header extends React.Component {
               </a>
               <div className={classes.grow} />
 
-              {data.me && data.me.isAdmin ? this.displayAdminLink() : ""}
+              <div className={classes.sectionDesktop}>
+                {data.me && data.me.isAdmin ? this.displayAdminLink() : ""}
 
-              <a href="/" style={{ textDecoration: "none" }}>
-                <Button
-                  color="primary"
-                  size="medium"
-                  className={classes.butt}
-                >
-                  Home
-                </Button>
-              </a>
-              {router.pathname === "/" && (
-                <>
-                  <a href="/#faq" style={{ textDecoration: "none" }}>
-                    <Button
-                      color="primary"
-                      size="medium"
-                      className={classes.butt}
-                    >
-                      FAQ
-                    </Button>
-                  </a>
-                  <a
-                    href="/#testimonial"
-                    style={{ textDecoration: "none" }}
+                <a href="/" style={{ textDecoration: "none" }}>
+                  <Button
+                    color="primary"
+                    size="medium"
+                    className={classes.butt}
                   >
-                    <Button
-                      color="primary"
-                      size="medium"
-                      className={classes.butt}
+                    Home
+                  </Button>
+                </a>
+                {router.pathname === "/" && (
+                  <>
+                    <a href="/#faq" style={{ textDecoration: "none" }}>
+                      <Button
+                        color="primary"
+                        size="medium"
+                        className={classes.butt}
+                      >
+                        FAQ
+                      </Button>
+                    </a>
+                    <a
+                      href="/#testimonial"
+                      style={{ textDecoration: "none" }}
                     >
-                      Testimonials
-                    </Button>
-                  </a>
-                </>
-              )}
-              <a href="/how-to-play" style={{ textDecoration: "none" }}>
-                <Button
-                  color="primary"
-                  size="medium"
-                  className={classes.butt}
+                      <Button
+                        color="primary"
+                        size="medium"
+                        className={classes.butt}
+                      >
+                        Testimonials
+                      </Button>
+                    </a>
+                  </>
+                )}
+                <a href="/how-to-play" style={{ textDecoration: "none" }}>
+                  <Button
+                    color="primary"
+                    size="medium"
+                    className={classes.butt}
+                  >
+                    How To Play
+                  </Button>
+                </a>
+                <a href="/winners" style={{ textDecoration: "none" }}>
+                  <Button
+                    color="primary"
+                    size="medium"
+                    className={classes.butt}
+                  >
+                    Winners
+                  </Button>
+                </a>
+                {data.token ? (
+                  <IconButton color="primary" onClick={this.handleLogout}>
+                    <Logout />
+                  </IconButton>
+                ) : (
+                  <>
+                    <a href="/login" style={{ textDecoration: "none" }}>
+                      <Button
+                        color="primary"
+                        variant="extendedFab"
+                        onClick={this.handleAuth}
+                        className={classes.but}
+                      >
+                        Login
+                      </Button>
+                    </a>
+                    <a href="/register" style={{ textDecoration: "none" }}>
+                      <Button
+                        color="primary"
+                        variant="extendedFab"
+                        onClick={this.handleAuth}
+                        className={classes.but}
+                      >
+                        Register
+                      </Button>
+                    </a>
+                  </>
+                )}
+              </div>
+              <div className={classes.sectionMobile}>
+                <IconButton
+                  aria-haspopup="true"
+                  onClick={this.handleMobileMenuOpen}
+                  color="inherit"
                 >
-                  How To Play
-                </Button>
-              </a>
-              <a href="/winners" style={{ textDecoration: "none" }}>
-                <Button
-                  color="primary"
-                  size="medium"
-                  className={classes.butt}
-                >
-                  Winners
-                </Button>
-              </a>
-              {data.token ? (
-                <IconButton color="primary" onClick={this.handleLogout}>
-                  <Logout />
+                  <MoreIcon />
                 </IconButton>
-              ) : (
-                <>
-                  <a href="/login" style={{ textDecoration: "none" }}>
-                    <Button
-                      color="primary"
-                      variant="extendedFab"
-                      onClick={this.handleAuth}
-                      className={classes.but}
-                    >
-                      Login
-                    </Button>
-                  </a>
-                  <a href="/register" style={{ textDecoration: "none" }}>
-                    <Button
-                      color="primary"
-                      variant="extendedFab"
-                      onClick={this.handleAuth}
-                      className={classes.but}
-                    >
-                      Register
-                    </Button>
-                  </a>
-                </>
-              )}
+              </div>
             </Toolbar>
           </AppBar>
-          {/* {
-            !admin &&
-              <MoreHeader />
-          } */}
+          {renderMenu}
+          {renderMobileMenu}
         </div>
       </div>
     );
