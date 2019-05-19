@@ -79,17 +79,18 @@ class SimpleSlider extends Component {
                 game.img[0]}') no-repeat center center`
             }}
           >
-            <section>
+            {/* <section>
               <Typography className={classes.side}>
                 <Typography className={classes.sideNum}>
                   &#8358;{game.amt}
                 </Typography>
               </Typography>
-            </section>
+            </section> */}
             <div className="inner">
               <Typography variant="h1">{game.name}</Typography>
               <Typography variant="body1">
-                {moment(game.createdAt).fromNow()}
+                {/* {moment(game.createdAt).fromNow()} */}
+                &#8358;{game.amt}
               </Typography>
               <a
                 href={
