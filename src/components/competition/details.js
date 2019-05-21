@@ -61,34 +61,45 @@ class Details extends React.Component {
             <Tab label="History" />
           </Tabs>
         </AppBar>
-        {value === 0 && 
-					<TabContainer>
-						{description}
-					</TabContainer>
-				}
-        {value === 1 && 
-				<TabContainer>
-					<Table className={classes.table}>
-						<TableHead>
-							<TableRow>
-								<TableCell># Ticket</TableCell>
-								<TableCell align="right">Name</TableCell>
-								<TableCell align="right">Date</TableCell>
-							</TableRow>
-						</TableHead>
-						<TableBody>
-							{history.map(row => (
-								<TableRow key={row._id}>
-									<TableCell component="th" scope="row">{row.ticket}</TableCell>
-									<TableCell align="right">{row.name}</TableCell>
-									<TableCell align="right">
-										{moment(row.createdAt).fromNow()}
-									</TableCell>
-								</TableRow>
-							))}
-						</TableBody>
-					</Table>
-				</TabContainer>}
+        {value === 0 && (
+          <TabContainer>
+            {/* {description} */}
+            {description.split("\n").map(function(item, key) {
+              return (
+                <span key={key}>
+                  {item}
+                  <br />
+                </span>
+              );
+            })}
+          </TabContainer>
+        )}
+        {value === 1 && (
+          <TabContainer>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell># Ticket</TableCell>
+                  <TableCell align="right">Name</TableCell>
+                  <TableCell align="right">Date</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {history.map(row => (
+                  <TableRow key={row._id}>
+                    <TableCell component="th" scope="row">
+                      {row.ticket}
+                    </TableCell>
+                    <TableCell align="right">{row.name}</TableCell>
+                    <TableCell align="right">
+                      {moment(row.createdAt).fromNow()}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TabContainer>
+        )}
       </div>
     );
   }
