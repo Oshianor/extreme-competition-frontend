@@ -161,77 +161,77 @@ class GameContainer extends Component {
     });
   }
 
-  handleTicketBuy = async () => {
-    const { data, game, getTickets } = this.props;
-    const { select } = this.state;
-    let dataDem = {
-      amt: game.amt,
-      gameId: game._id,
-      ticket: select
-    };
-    if (data.token) {
-      const options = {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "x-auth-token": data.token
-        },
-        data: JSON.stringify(dataDem),
-        url: config.buyTicket
-      };
-      let games = await axios(options);
-      console.log('games--games', games);
-      getTickets(games.data.content);
-      this.setState({
-        select: []
-      });
-    } else {
-      this.setState({
-        warning: true
-      });
-    }
-  };
-
-  // callback = async response => {
-  //   console.log("responseresponse", response);
-  //   if (response.data.data.status === "successful") {
-  //     const { data, game, getTickets, router } = this.props;
-  //     const { select } = this.state;
-
-  //     console.log("gamegamegamegamegame", game, "routerrouterrouter", router);
-      
-
-	// 		if (data.token) {
-	// 			let dataDem = {
-	// 				amt: game.amt,
-	// 				gameId: game._id,
-	// 				ticket: select
-	// 			};
-	// 			const options = {
-	// 				method: "POST",
-	// 				headers: {
-	// 					"content-type": "application/json",
-	// 					"Access-Control-Allow-Origin": "*",
-	// 					"x-auth-token": data.token
-	// 				},
-	// 				data: JSON.stringify(dataDem),
-	// 				url: config.buyTicket
-	// 			};
-	// 			let games = await axios(options);
-	// 			// console.log('games--games', games);
-	// 			getTickets(games.data.content);
-	// 			this.setState({
-	// 				select: []
-  //       });
-  //       Router.push("/error", "/game/" + game.name + "/" + game._id);
-	// 		} else {
-	// 			this.setState({
-	// 				warning: true
-	// 			});
-	// 		}
+  // handleTicketBuy = async () => {
+  //   const { data, game, getTickets } = this.props;
+  //   const { select } = this.state;
+  //   let dataDem = {
+  //     amt: game.amt,
+  //     gameId: game._id,
+  //     ticket: select
+  //   };
+  //   if (data.token) {
+  //     const options = {
+  //       method: "POST",
+  //       headers: {
+  //         "content-type": "application/json",
+  //         "Access-Control-Allow-Origin": "*",
+  //         "x-auth-token": data.token
+  //       },
+  //       data: JSON.stringify(dataDem),
+  //       url: config.buyTicket
+  //     };
+  //     let games = await axios(options);
+  //     console.log('games--games', games);
+  //     getTickets(games.data.content);
+  //     this.setState({
+  //       select: []
+  //     });
+  //   } else {
+  //     this.setState({
+  //       warning: true
+  //     });
   //   }
   // };
+
+  callback = async response => {
+    console.log("responseresponse", response);
+    if (response.data.data.status === "successful") {
+      const { data, game, getTickets, router } = this.props;
+      const { select } = this.state;
+
+      console.log("gamegamegamegamegame", game, "routerrouterrouter", router);
+      
+
+			if (data.token) {
+				let dataDem = {
+					amt: game.amt,
+					gameId: game._id,
+					ticket: select
+				};
+				const options = {
+					method: "POST",
+					headers: {
+						"content-type": "application/json",
+						"Access-Control-Allow-Origin": "*",
+						"x-auth-token": data.token
+					},
+					data: JSON.stringify(dataDem),
+					url: config.buyTicket
+				};
+				let games = await axios(options);
+				// console.log('games--games', games);
+				getTickets(games.data.content);
+				this.setState({
+					select: []
+        });
+        Router.push("/error", "/game/" + game.name + "/" + game._id);
+			} else {
+				this.setState({
+					warning: true
+				});
+			}
+    }
+  };
 
   close = () => {
     console.log("Payment closed");
@@ -319,28 +319,28 @@ class GameContainer extends Component {
           </div>
 
           {data.token && game.status && (
-            <Button
-              style={{ width: 200, color: "white" }}
-              color="primary"
-              disabled={!select}
-              onClick={this.handleTicketBuy}
-              variant="contained"
-            >
-              Buy ticket &nbsp;
-            </Button>
-            // <Payment
-            //   metadata={[{ metaname: "Device", metavalue: "IPhone X" }]}
-            //   reference={this.getReference()}
-            //   customer_phone={data.me && data.me.phone}
-            //   email={data.me && data.me.email}
-            //   amount={game.amt * select.length}
-            //   ravePubKey={key}
-            //   callback={this.callback}
-            //   close={this.close}
-            //   disabled={typeof select[0] === "undefined"}
-            //   select={select}
-            //   isProduction={true}
-            // />
+            // <Button
+            //   style={{ width: 200, color: "white" }}
+            //   color="primary"
+            //   disabled={!select}
+            //   onClick={this.handleTicketBuy}
+            //   variant="contained"
+            // >
+            //   Buy ticket &nbsp;
+            // </Button>
+            <Payment
+              metadata={[{ metaname: "Device", metavalue: "IPhone X" }]}
+              reference={this.getReference()}
+              customer_phone={data.me && data.me.phone}
+              email={data.me && data.me.email}
+              amount={game.amt * select.length}
+              ravePubKey={key}
+              callback={this.callback}
+              close={this.close}
+              disabled={typeof select[0] === "undefined"}
+              select={select}
+              isProduction={true}
+            />
           )}
 
           <Details description={game.description} history={game.history} />

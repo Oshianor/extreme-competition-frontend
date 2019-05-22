@@ -186,7 +186,7 @@ class RegisterComponent extends Component {
       }
       
     } catch (error) {
-      console.log("ERROR : ", error);
+      console.log("ERROR : ", error.response);
     }
     this.setState({
       loading: false
