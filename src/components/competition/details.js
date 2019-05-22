@@ -59,6 +59,7 @@ class Details extends React.Component {
           <Tabs value={value} onChange={this.handleChange}>
             <Tab label="Description" />
             <Tab label="History" />
+          </Tabs>
         </AppBar>
         {value === 0 && (
           <TabContainer>
