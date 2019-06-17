@@ -35,6 +35,8 @@ class Index extends React.Component {
       // Router.push('/');
     }
 
+    
+
   }
   
   render() {

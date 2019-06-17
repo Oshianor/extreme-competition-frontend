@@ -32,6 +32,8 @@ class Index extends React.Component {
       Router.push("/error", "/");
     }
 
+    
+
   }
   
   render() {

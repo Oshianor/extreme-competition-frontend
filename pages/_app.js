@@ -26,6 +26,19 @@ class MyApp extends App {
     if (jssStyles && jssStyles.parentNode) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
+
+
+        const script = document.createElement("script");
+
+        script.src = "https://use.typekit.net/foobar.js";
+        const s0 = document.getElementsByTagName("script")[0];
+        script.async = true;
+        script.src =
+          "https://embed.tawk.to/5d08055f36eab9721117e798/default";
+        script.charset = "UTF-8";
+        script.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(script, s0);
+        document.body.appendChild(script);
   }
 
   render() {
