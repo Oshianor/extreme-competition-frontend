@@ -34,7 +34,7 @@ class MyApp extends App {
         const s0 = document.getElementsByTagName("script")[0];
         script.async = true;
         script.src =
-          "https://embed.tawk.to/5d08055f36eab9721117e798/default";
+          "https://embed.tawk.to/5d0835a453d10a56bd7a8ad9/default";
         script.charset = "UTF-8";
         script.setAttribute("crossorigin", "*");
         s0.parentNode.insertBefore(script, s0);
