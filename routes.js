@@ -11,5 +11,7 @@ routes.add('game', '/game/:name/:id');
 routes.add('admin', '/admin/:token');
 routes.add('addtestimonal', '/testimonial/:token');
 routes.add('creategame', '/admin/create/:token');
-routes.add('editgame', '/admin/edit/:token/:gameId');
-
+routes.add("editgame", "/admin/edit/:token/:gameId");
+routes.add("resetPassword", "/reset/:token");
+routes.add('forgotPassword', '/forgot-password');
+// routes.add("verification", "/verify/email-address/:token");

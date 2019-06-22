@@ -1,10 +1,13 @@
 // const api = 'http://localhost:3000/api/';
-const api = "https://extremecompetitions.com/api/";
+const api = "https://extremecompetitions. com/api/";
 // export const image = 'http://localhost:3000/game/';
-export const image = "https://extremecompetitions.com/public/game/";
+export const image = "https://extremecompetitions.c om/public/game/";
 export const config = {
 	login: api + 'auth',
 	register: api + 'user',
+	resetAccount: api + "auth/reset",
+	resetChangePassword: api + "auth/user/reset/password",
+	resetPageActive: api + "auth/check/resettoken/",
 	getCurrentGames: api + 'game/current',
 	getGame: api + 'game/single/',
 	me: api + 'user/me',

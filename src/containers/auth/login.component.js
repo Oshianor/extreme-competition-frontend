@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getToken, getMe } from "../../actions/data";
 import Router, { withRouter } from "next/router";
-import { Input } from '@material-ui/core';
+import Link from "next/link";
 
 
 const styles = theme => ({
@@ -47,11 +47,11 @@ const styles = theme => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
-    margin: "0px 2%",
-    [theme.breakpoints.up("lg")]: {
-      // large: 1280px or larger
-      margin: "0px 25%"
-    }
+    // margin: "0px 2%",
+    // [theme.breakpoints.up("lg")]: {
+    //   // large: 1280px or larger
+    //   margin: "0px 25%"
+    // }
   },
   textField: {
     // marginLeft: theme.spacing.unit,
@@ -273,91 +273,113 @@ class LoginComponent extends Component {
         >
           Welcome, Login to your Account
         </Typography>
-        <form className={classes.container} noValidate autoComplete="off">
-          {res.error && (
-            <Typography
-              variant="caption"
-              gutterBottom
-              style={{ margin: "0 8%", fontSize: 12, color: "red" }}
+        <Grid container justify="center" alignItems="center">
+          <Grid item xs={12} sm={8} md={6}>
+            <form
+              className={classes.container}
+              noValidate
+              autoComplete="off"
             >
-              *{res.msg}
-            </Typography>
-          )}
-          <TextField
-            error={emailHelper.err}
-            name="email"
-            value={email}
-            label="Email"
-            type="email"
-            InputLabelProps={{
-              classes: {
-                root: classes.cssLabel,
-                focused: classes.cssFocused
-              }
-            }}
-            InputProps={{
-              classes: {
-                root: classes.cssOutlinedInput,
-                input: classes.bodyRoot,
-                focused: classes.cssFocused,
-                notchedOutline: classes.notchedOutline
-              }
-            }}
-            required
-            onBlur={this.handleEmail}
-            onChange={this.onchnage}
-            helperText={emailHelper.msg}
-            fullWidth
-            margin="normal"
-            variant="outlined"
-          />
-
-          <TextField
-            error={passwordHelper.err}
-            required
-            name="password"
-            label="Password"
-            value={password}
-            onBlur={this.handlePassword}
-            onChange={this.onchnage}
-            type="password"
-            helperText={passwordHelper.msg}
-            InputLabelProps={{
-              classes: {
-                root: classes.cssLabel,
-                focused: classes.cssFocused
-              }
-            }}
-            InputProps={{
-              classes: {
-                root: classes.cssOutlinedInput,
-                input: classes.bodyRoot,
-                focused: classes.cssFocused,
-                notchedOutline: classes.notchedOutline
-              }
-            }}
-            fullWidth
-            margin="normal"
-            variant="outlined"
-          />
-
-          <Button
-            variant="contained"
-            color="secondary"
-            disabled={loading}
-            onClick={this.handleLogin.bind(this)}
-            className={classes.button}
-          >
-            {loading ? (
-              <CircularProgress
-                size={24}
-                className={classes.buttonProgress}
+              {res.error && (
+                <Typography
+                  variant="caption"
+                  gutterBottom
+                  style={{ margin: "0 8%", fontSize: 12, color: "red" }}
+                >
+                  *{res.msg}
+                </Typography>
+              )}
+              <TextField
+                error={emailHelper.err}
+                name="email"
+                value={email}
+                label="Email"
+                type="email"
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel,
+                    focused: classes.cssFocused
+                  }
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.cssOutlinedInput,
+                    input: classes.bodyRoot,
+                    focused: classes.cssFocused,
+                    notchedOutline: classes.notchedOutline
+                  }
+                }}
+                required
+                onBlur={this.handleEmail}
+                onChange={this.onchnage}
+                helperText={emailHelper.msg}
+                fullWidth
+                margin="normal"
+                variant="outlined"
               />
-            ) : (
-              "Log In"
-            )}
-          </Button>
-        </form>
+
+              <TextField
+                error={passwordHelper.err}
+                required
+                name="password"
+                label="Password"
+                value={password}
+                onBlur={this.handlePassword}
+                onChange={this.onchnage}
+                type="password"
+                helperText={passwordHelper.msg}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel,
+                    focused: classes.cssFocused
+                  }
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.cssOutlinedInput,
+                    input: classes.bodyRoot,
+                    focused: classes.cssFocused,
+                    notchedOutline: classes.notchedOutline
+                  }
+                }}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+              />
+              <Grid container spacing={24} style={{ margin: "0 8%" }}>
+                <Grid item xs={6} sm={6} style={{ paddingLeft: 0 }}>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    disabled={loading}
+                    onClick={this.handleLogin.bind(this)}
+                    className={classes.button}
+                  >
+                    {loading ? (
+                      <CircularProgress
+                        size={24}
+                        className={classes.buttonProgress}
+                      />
+                    ) : (
+                      "Log In"
+                    )}
+                  </Button>
+                </Grid>
+                <Grid item xs={6} sm={6} style={{ paddingRight: 0 }}>
+                  <Typography
+                    variant="overline"
+                    gutterBottom
+                    className={classes.forgot}
+                  >
+                    <Link href="/forgot-password">
+                      <a style={{ color: "white" }}>Forgot Password?</a>
+                    </Link>
+                  </Typography>
+                </Grid>
+              </Grid>
+            </form>
+          </Grid>
+        </Grid>
       </div>
     );
   }
